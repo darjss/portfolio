@@ -1,0 +1,91 @@
+---
+import { education, experience, uiCopy } from '../data/site';
+---
+
+<div class="space-y-8">
+    <section>
+        <h3
+            class="text-sm font-semibold text-primary mb-3"
+            data-i18n-field
+            data-en={uiCopy.sections.education.en}
+            data-mn={uiCopy.sections.education.mn}
+        >
+            {uiCopy.sections.education.en}
+        </h3>
+
+        <div class="space-y-3">
+            {education.map(item =>
+                <article class="rounded-lg border ui-border ui-panel-soft p-4">
+                    <p
+                        class="text-sm font-semibold ui-text"
+                        data-i18n-field
+                        data-en={item.institution.en}
+                        data-mn={item.institution.mn}
+                    >
+                        {item.institution.en}
+                    </p>
+                    <p
+                        class="text-sm ui-muted"
+                        data-i18n-field
+                        data-en={item.program.en}
+                        data-mn={item.program.mn}
+                    >
+                        {item.program.en}
+                    </p>
+                    <p class="text-xs ui-muted mt-1">{item.period}</p>
+                </article>
+            )}
+        </div>
+    </section>
+
+    <section>
+        <h3
+            class="text-sm font-semibold text-primary mb-3"
+            data-i18n-field
+            data-en={uiCopy.sections.experience.en}
+            data-mn={uiCopy.sections.experience.mn}
+        >
+            {uiCopy.sections.experience.en}
+        </h3>
+
+        <div class="space-y-3">
+            {experience.map(item =>
+                <article class="rounded-lg border ui-border ui-panel-soft p-4">
+                    <p>
+                        <span
+                            class="text-sm font-semibold ui-text"
+                            data-i18n-field
+                            data-en={item.role.en}
+                            data-mn={item.role.mn}
+                        >
+                            {item.role.en}
+                        </span>
+                        <span class="text-sm ui-muted"> · </span>
+                        <span
+                            class="text-sm ui-muted"
+                            data-i18n-field
+                            data-en={item.organization.en}
+                            data-mn={item.organization.mn}
+                        >
+                            {item.organization.en}
+                        </span>
+                    </p>
+                    <p class="text-xs ui-muted mt-1 mb-2">{item.period}</p>
+
+                    <ul class="list-disc pl-5 space-y-1">
+                        {item.highlights.map(highlight =>
+                            <li
+                                class="text-sm ui-muted leading-relaxed"
+                                data-i18n-field
+                                data-en={highlight.en}
+                                data-mn={highlight.mn}
+                            >
+                                {highlight.en}
+                            </li>
+                        )}
+                    </ul>
+                </article>
+            )}
+        </div>
+    </section>
+</div>

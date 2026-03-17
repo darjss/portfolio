@@ -1,0 +1,125 @@
+---
+import { Code } from 'astro:components';
+
+const code = `interface Developer {
+    name: string;
+    skills: string[];
+    interests: string[];
+};
+
+interface TechStack {
+    tools: string[];
+    backend: string[];
+    frontend: string[];
+};
+
+type ContactType = 'github' | 'email' | 'phone';
+
+const techStack: TechStack = {
+    tools: [
+        'GitHub',
+        'Bun',
+        'Turbo',
+        'Wrangler',
+        'Docker',
+        'Railway',
+        'AWS',
+        'Cloudflare',
+        'CI/CD',
+        'Domain & DNS Management'
+    ],
+    frontend: [
+        'JavaScript',
+        'TypeScript',
+        'Astro',
+        'Next.js',
+        'React',
+        'TailwindCSS',
+        'Framer Motion',
+        'TanStack Query',
+        'SCSS',
+        'Vite',
+        'Flutter'
+    ],
+    backend: [
+        'Node.js',
+        'Express',
+        'Hono',
+        'Elysia',
+        'tRPC',
+        'Drizzle ORM',
+        'LibSQL',
+        'PostgreSQL',
+        'MySQL',
+        'MongoDB',
+        'Zod',
+        'REST APIs'
+    ]
+};
+
+// Developer profile
+const me: Developer = {
+    name: 'Aviddaram Bazarragchaa',
+    skills: [
+        ...techStack.tools,
+        ...techStack.backend,
+        ...techStack.frontend
+    ],
+    interests: [
+        'Open Source',
+        'Product Engineering',
+        'Backend Architecture',
+        'Data-heavy Apps',
+        'DevOps Automation',
+        'Performance',
+        'Localization'
+    ]
+};
+
+// Contact function
+const contact = (type: ContactType): string => {
+    switch (type) {
+        case 'github':
+            return 'https://github.com/darjss';
+        case 'email':
+            return 'darjsavid@gmail.com';
+        case 'phone':
+            return '+97694568799';
+        default:
+            return 'Send fax.';
+    }
+};
+
+`;
+---
+
+<Code
+    code={code}
+    lang="js"
+    wrap={true}
+/>
+
+<style is:global>
+
+    /* Custom styling for code block line numbers */
+    pre.astro-code {
+        @apply bg-transparent !important;
+    }
+
+    pre.astro-code code {
+        @apply block;
+        counter-reset: step;
+        counter-increment: step 0;
+    }
+
+    pre.astro-code code .line {
+        @apply relative;
+    }
+
+    pre.astro-code code .line::before {
+        content: counter(step);
+        counter-increment: step;
+        @apply text-gray-600 pr-2;
+    }
+
+</style>
