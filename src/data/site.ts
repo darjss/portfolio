@@ -116,6 +116,16 @@ export const projects: Project[] = [{
         mn: 'Prompt-оос диаграм үүсгэдэг AI бүтээгдэхүүн бөгөөд санаа болон системийн урсгалыг дүрслэн ойлгоход хялбар болгодог.'
     },
     sourceUrl: 'https://github.com/darjss/diagram'
+}, {
+    name: {
+        en: 'golomt-cargo',
+        mn: 'golomt-cargo'
+    },
+    description: {
+        en: 'Backend development for a real cargo shipping business, built together with two other teammates around production business workflows.',
+        mn: 'Бодит карго тээврийн бизнест зориулсан backend хөгжүүлэлт бөгөөд хоёр багийн гишүүнтэй хамтран production бизнесийн урсгал дээр ажиллаж байна.'
+    },
+    sourceUrl: 'https://github.com/AnarTHEmegamind0/golomt-cargo'
 }];
 
 export const uiCopy = {
