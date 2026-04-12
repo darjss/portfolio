@@ -88,57 +88,34 @@ export const socials: Social[] = [{
 
 export const projects: Project[] = [{
     name: {
-        en: 'krilleer',
-        mn: 'krilleer'
+        en: 'sisi-agent',
+        mn: 'sisi-agent'
     },
     description: {
-        en: 'A TypeScript web app deployed to production at krilleer.com, focused on a clean UI and practical user flows.',
-        mn: 'krilleer.com дээр production орчинд ажиллаж буй TypeScript вэб апп бөгөөд цэвэр UI болон бодит хэрэглээний урсгалд төвлөрсөн.'
+        en: 'My bachelor thesis project focused on building an AI agent system for practical, autonomous workflows.',
+        mn: 'AI agent системийг бодит, бие даасан ажлын урсгалд ашиглахад чиглэсэн миний бакалаврын дипломын төсөл.'
     },
-    websiteUrl: 'https://krilleer.com',
-    sourceUrl: 'https://github.com/darjss/krilleer'
+    sourceUrl: 'https://github.com/darjss/sisi-agent'
 }, {
     name: {
-        en: 'yellow-book',
-        mn: 'yellow-book'
+        en: 'tseej-bichig',
+        mn: 'тээж бичиг'
     },
     description: {
-        en: 'Advanced web class group project where I led the team and implemented most of the system, including deployment and delivery workflows.',
-        mn: 'Вэб ахисан хичээлийн багийн төсөл; би багийн ахлагч байсан бөгөөд системийн гол хөгжүүлэлт, deploy болон хүргэлтийн урсгалыг хэрэгжүүлсэн.'
+        en: 'A dictation app for children in Mongolia that automates speaking exercises to help them improve Mongolian language skills.',
+        mn: 'Монгол хүүхдүүдэд зориулсан сонсгол бичгийн апп бөгөөд диктантыг автоматжуулж, хэлний чадвараа сайжруулахад тусалдаг.'
     },
-    websiteUrl: 'https://yellow-book.darjs.dev/',
-    sourceUrl: 'https://github.com/darjss/yellow-book'
+    sourceUrl: 'https://github.com/darjss/tseej-bichig'
 }, {
     name: {
-        en: 'vit-store',
-        mn: 'vit-store'
+        en: 'diagram',
+        mn: 'diagram'
     },
     description: {
-        en: 'E-commerce project for amerikvitamin.mn with product catalog, checkout-focused flows, and a modern TypeScript stack.',
-        mn: 'amerikvitamin.mn-д зориулсан e-commerce төсөл бөгөөд бүтээгдэхүүний каталог, checkout-д төвлөрсөн урсгал, modern TypeScript стектэй.'
+        en: 'An AI product that turns prompts into diagrams to make ideas and system flows easier to explore visually.',
+        mn: 'Prompt-оос диаграм үүсгэдэг AI бүтээгдэхүүн бөгөөд санаа болон системийн урсгалыг дүрслэн ойлгоход хялбар болгодог.'
     },
-    websiteUrl: 'https://amerikvitamin.mn',
-    sourceUrl: 'https://github.com/darjss/vit-store'
-}, {
-    name: {
-        en: 'chat',
-        mn: 'chat'
-    },
-    description: {
-        en: 'Proximity chat app built for a dev hackathon, designed for location-aware conversations with a fast TypeScript workflow.',
-        mn: 'Dev hackathon-д зориулж хийсэн proximity chat апп; байршилд суурилсан харилцааг TypeScript-ийн хурдан хөгжүүлэлтийн урсгалтай хослуулсан.'
-    },
-    sourceUrl: 'https://github.com/darjss/chat'
-}, {
-    name: {
-        en: 'tranzfer.app',
-        mn: 'tranzfer.app'
-    },
-    description: {
-        en: 'WeTransfer-inspired file transfer product for sharing large files with a simple upload-and-share experience.',
-        mn: 'WeTransfer-оос сэдэвлэсэн файл дамжуулах бүтээгдэхүүн; том файлыг хялбар upload хийж шууд хуваалцах туршлага дээр төвлөрсөн.'
-    },
-    websiteUrl: 'https://tranzfer.app'
+    sourceUrl: 'https://github.com/darjss/diagram'
 }];
 
 export const uiCopy = {
@@ -181,6 +158,10 @@ export const uiCopy = {
     projectSourcePrivate: {
         en: 'Source Code Private',
         mn: 'Эх код нууц'
+    },
+    cvDownload: {
+        en: 'Download CV',
+        mn: 'CV татах'
     },
     sections: {
         experience: {
