@@ -1,0 +1,120 @@
+/* WIND.UB — CSS-only fabric motion. Used in the fallback path (no
+   html-in-canvas) and for small cloth pieces (patches, pennants, strips).
+   All motion is disabled under prefers-reduced-motion. */
+
+@keyframes wind-flag-sway {
+  0%, 100% { transform: rotate(-0.45deg) skewY(-0.25deg); }
+  50% { transform: rotate(0.6deg) skewY(0.35deg); }
+}
+
+@keyframes wind-patch-flap {
+  0%, 100% { transform: rotate(-1.7deg) translateY(0); }
+  50% { transform: rotate(1.9deg) translateY(-3px); }
+}
+
+@keyframes wind-pennant-flutter {
+  0%, 100% { transform: rotate(-7deg) skewX(-5deg); }
+  50% { transform: rotate(8deg) skewX(6deg); }
+}
+
+@keyframes wind-strip-drift {
+  0%, 100% { transform: translateX(-3px) skewY(-0.5deg); }
+  50% { transform: translateX(4px) skewY(0.6deg); }
+}
+
+@keyframes wind-earbud-spin {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes wind-ring-shake {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-2.6deg); }
+  40% { transform: rotate(2.6deg); }
+  60% { transform: rotate(-2deg); }
+  80% { transform: rotate(2deg); }
+}
+
+@keyframes wind-dye-drift {
+  0% { transform: translate(-6%, -4%) scale(1.1); }
+  50% { transform: translate(5%, 6%) scale(1.28); }
+  100% { transform: translate(-6%, -4%) scale(1.1); }
+}
+
+@keyframes wind-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes wind-iridesce {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+
+.wind-sway {
+  transform-origin: left center;
+  animation: wind-flag-sway 5s ease-in-out infinite;
+}
+
+.wind-flap {
+  transform-origin: top center;
+  animation: wind-patch-flap 3s ease-in-out infinite;
+}
+
+.wind-pennant {
+  transform-origin: top center;
+  animation: wind-pennant-flutter 1.2s ease-in-out infinite;
+}
+
+.wind-strip {
+  animation: wind-strip-drift 2.2s ease-in-out infinite;
+}
+
+.wind-earbud {
+  animation: wind-earbud-spin 4s ease-in-out infinite;
+}
+
+.wind-ringing {
+  animation: wind-ring-shake 0.5s ease-in-out infinite;
+}
+
+.wind-dye {
+  animation: wind-dye-drift 18s ease-in-out infinite;
+}
+
+.wind-ticker {
+  animation: wind-ticker 30s linear infinite;
+}
+
+.wind-bubble {
+  animation: wind-iridesce 6s linear infinite;
+}
+
+/* Fabric weave texture, applied over the flag content. */
+.wind-weave {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.014) 0 1px,
+      transparent 1px 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.014) 0 1px,
+      transparent 1px 3px
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wind-sway,
+  .wind-flap,
+  .wind-pennant,
+  .wind-strip,
+  .wind-earbud,
+  .wind-ringing,
+  .wind-dye,
+  .wind-ticker,
+  .wind-bubble {
+    animation: none !important;
+  }
+}
