@@ -1,0 +1,118 @@
+/* ColdStorage — frozen ledger type scale.
+   Default: micro-type read through melted frost and the loupe.
+   .cs-plain: the fallback engineering document at comfortable sizes. */
+
+.cs-ledger {
+  --cs-ink: #2c3a47;
+  --cs-faint-ink: #8195a6;
+  --cs-hairline: #bfcdd9;
+  --fs-index: 9px;
+  --fs-body: 9px;
+  --fs-dense: 7.5px;
+  --fs-name: 11px;
+  --fs-number: 12px;
+  color: var(--cs-ink);
+}
+
+.cs-ledger.cs-plain {
+  --fs-index: 15px;
+  --fs-body: 15px;
+  --fs-dense: 13px;
+  --fs-name: 19px;
+  --fs-number: 20px;
+}
+
+.cs-ledger.cs-plain .cs-drawer {
+  margin-top: 1.5rem;
+}
+
+.cs-index-row {
+  font-size: var(--fs-index);
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.cs-body {
+  font-size: var(--fs-body);
+}
+
+.cs-dense {
+  font-size: var(--fs-dense);
+}
+
+.cs-faint {
+  color: var(--cs-faint-ink);
+}
+
+.cs-name {
+  font-size: var(--fs-name);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.cs-number {
+  font-size: var(--fs-number);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.cs-rule {
+  height: 1px;
+  background: var(--cs-hairline);
+}
+
+.cs-table {
+  border-top: 1px solid var(--cs-hairline);
+  border-bottom: 1px solid var(--cs-hairline);
+}
+
+.cs-cell {
+  padding: 2px 4px;
+  border-top: 1px solid var(--cs-hairline);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-cell:nth-child(-n + 2) {
+  border-top: none;
+}
+
+.cs-cell:nth-child(odd) {
+  border-right: 1px solid var(--cs-hairline);
+}
+
+/* ——— loupe control: pulses once to invite inspection ——— */
+
+@keyframes cs-loupe-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(100, 130, 155, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(100, 130, 155, 0);
+  }
+}
+
+.cs-loupe-btn {
+  animation: cs-loupe-pulse 1.8s ease-out 1.2s 1 both;
+}
+
+/* ——— loupe HUD: the lens measures the page itself ——— */
+
+.cs-hud {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  font-size: 8px;
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  color: #3d5270;
+  background: rgba(244, 248, 251, 0.88);
+  border: 1px solid #9db3c4;
+  padding: 5px 7px;
+  white-space: pre;
+  backdrop-filter: blur(2px);
+}
