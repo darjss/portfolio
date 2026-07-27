@@ -1,6 +1,6 @@
 export const profile = {
   name: "darjs",
-  fullName: "Dariimaa Erdenesuren",
+  fullName: "Aviddaram Bazarragchaa",
   role: "Full Stack Developer",
   location: "Ulaanbaatar, Mongolia",
   tagline: "i build things at the edge of the steppe",
