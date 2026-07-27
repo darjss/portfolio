@@ -1,0 +1,61 @@
+/* rack-focus — scoped styles */
+
+.rf-lens {
+  -webkit-mask-image: radial-gradient(
+    circle 132px at var(--lx, -600px) var(--ly, -600px),
+    #000 52%,
+    transparent 98%
+  );
+  mask-image: radial-gradient(
+    circle 132px at var(--lx, -600px) var(--ly, -600px),
+    #000 52%,
+    transparent 98%
+  );
+}
+
+.rf-ring {
+  transform: translate3d(
+    calc(var(--lx, -600px) - 132px),
+    calc(var(--ly, -600px) - 132px),
+    0
+  );
+  opacity: var(--lens, 0);
+  transition: opacity 400ms ease;
+}
+
+.rf-lens-wrap {
+  opacity: var(--lens, 0);
+  transition: opacity 400ms ease;
+}
+
+.rf-plate {
+  will-change: filter, transform, opacity;
+}
+
+.rf-hint {
+  animation: rf-hint-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes rf-hint-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* fallback document mode: blur becomes a patient fade */
+.rf-section {
+  opacity: 0.18;
+  transform: translateY(24px);
+  transition:
+    opacity 900ms ease,
+    transform 900ms ease;
+}
+
+.rf-section.rf-in {
+  opacity: 1;
+  transform: none;
+}
