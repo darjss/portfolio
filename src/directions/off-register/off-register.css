@@ -1,0 +1,142 @@
+/* off-register — press-sheet chrome */
+
+/* crop marks on each plate corner */
+.or-plate::before,
+.or-plate::after {
+  content: "+";
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(22, 19, 14, 0.35);
+  pointer-events: none;
+}
+.or-plate::before {
+  top: -14px;
+  left: -2px;
+}
+.or-plate::after {
+  bottom: -14px;
+  right: -2px;
+}
+
+/* the grab mark that rides the ghost plate */
+.or-handle {
+  position: absolute;
+  top: -10px;
+  right: 6px;
+  z-index: 20;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  line-height: 1;
+  color: #e86a2a;
+  background: #f7f3ec;
+  border: 1.5px solid #e86a2a;
+  border-radius: 9999px;
+  cursor: grab;
+  touch-action: none;
+  box-shadow: 0 1px 0 rgba(22, 19, 14, 0.25);
+  user-select: none;
+}
+.or-handle.grabbing {
+  cursor: grabbing;
+  background: #e86a2a;
+  color: #f7f3ec;
+}
+.or-handle:focus-visible {
+  outline: 2px dashed #e86a2a;
+  outline-offset: 2px;
+}
+
+/* the rubber stamp */
+.or-stamp {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 30;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #e86a2a;
+  border: 2px solid #e86a2a;
+  border-radius: 2px;
+  padding: 5px 10px;
+  background: rgba(247, 243, 236, 0.85);
+  pointer-events: none;
+  animation: or-stamp-in 0.35s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+@keyframes or-stamp-in {
+  from {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* spec data: fresh ink, only printed once the plate locks */
+.or-spec {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.6s ease 0.25s,
+    transform 0.6s ease 0.25s;
+  pointer-events: none;
+}
+.or-spec[data-on="true"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* masthead hint blink */
+.or-hint {
+  animation: or-blink 1.2s steps(2, start) infinite;
+}
+@keyframes or-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* the sheet flipping over to its CV reverse */
+.cv-flip-in {
+  transform-origin: left center;
+  animation: cv-flip 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes cv-flip {
+  from {
+    transform: perspective(1600px) rotateY(-72deg);
+    opacity: 0.4;
+  }
+  to {
+    transform: perspective(1600px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+/* printing the CV: only the reverse side survives */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .cv-root,
+  .cv-root * {
+    visibility: visible;
+  }
+  .cv-root {
+    position: absolute !important;
+    inset: 0;
+    overflow: visible !important;
+    background: #ffffff;
+  }
+  .cv-no-print {
+    display: none !important;
+  }
+}
