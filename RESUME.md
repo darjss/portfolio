@@ -9,7 +9,7 @@ Software engineer with about 2.5 years of shipping production systems: payment f
 
 ## Experience
 
-### erxes · Backend Engineer, full stack · Remote
+### [erxes](https://github.com/erxes/erxes) · Backend Engineer, full stack · Remote
 **Jun 2026 – Present**
 
 Open-source CRM and customer-experience platform. 117 merged PRs across 6 repositories in 4 months.
@@ -44,14 +44,14 @@ SocialPay is Golomt's payments and wallet app. Part-time during semesters, full-
 - **[Tranzfer](https://github.com/darjss/tranzfer-v2)**. Resumable file delivery for creators and editors, preparing for public launch. Solid 2, Effect, and Alchemy on Cloudflare D1 and R2, with staging, production, and per-PR preview environments, e2e tests in CI, and Axiom telemetry.
 - **[khaan-client](https://github.com/darjss/khaan-client)**. Typed TypeScript SDK for Khan Bank's undocumented API: OTP device login, transactions, and automatic transfer reconciliation. Matches incoming bank transfers to orders in the Amerik Vitamin backend.
 - **[Herdr Orchestrate](https://github.com/darjss/herdr-orchestrate)**. Runs multiple AI coding agents in visible terminal sessions with durable state, isolated Git worktrees, and model routing. 7 stars.
-- **[Plugged Audio](https://github.com/darjss/plugged)**. Pre-launch in-ear monitor store for Mongolia. Astro, Solid, Elysia, and Drizzle on Cloudflare D1, QPay checkout, hybrid semantic and keyword search on Vectorize, and SMS login codes sent through an Android phone used as the SMS gateway.
+- **[DMS plugins](https://github.com/darjss/dms-bar-usage)**. DankMaterialShell plugins for my Linux desktop: a Codex and Claude Code usage widget backed by a small Go service, the Call Relay call overlay, and a screen casting control. QML, Go, D-Bus.
 
 ## Skills
 
-**Languages:** TypeScript, Java, Go, Kotlin, Python, SQL
-**AI:** Mastra, AI SDK, MCP, tool calling, memory, human-in-the-loop, voice
-**Backend:** Node.js, Bun, Spring Boot, Hono, GraphQL, tRPC, PostgreSQL, Oracle, MongoDB, Redis
-**Frontend and infra:** React, SolidJS, Astro, Cloudflare Workers, Durable Objects, D1, R2, Docker, ArgoCD, GitHub Actions
+**Languages:** TypeScript, Java, Go, Kotlin, Python, SQL, QML
+**AI:** Mastra, AI SDK, MCP, tool calling, agent memory, human-in-the-loop, voice
+**Backend and data:** Bun, Node.js, Elysia, Hono, Effect, tRPC, GraphQL, Spring Boot, Drizzle, PostgreSQL, Oracle, MongoDB, Redis
+**Frontend and infra:** SolidJS, React, Astro, TanStack, Tailwind, Cloudflare Workers, Durable Objects, D1, R2, Alchemy, Docker, ArgoCD
 
 ## Education
 

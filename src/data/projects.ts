@@ -62,6 +62,16 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "dms-plugins",
+    name: "dms-plugins",
+    pitch: "Plugins for DankMaterialShell, the Linux desktop shell I use.",
+    description:
+      "A bar widget that shows Codex and Claude Code usage limits from a small Go service, the Call Relay call overlay, and a GNOME Network Displays casting control.",
+    stack: ["QML", "Go", "D-Bus"],
+    sourceUrl: "https://github.com/darjss/dms-bar-usage",
+    featured: false,
+  },
+  {
     slug: "callrelay",
     name: "callrelay",
     pitch: "Android calls, relayed through the edge, ringing above fullscreen Linux apps.",

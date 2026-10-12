@@ -16,9 +16,9 @@
 \setlength{\parindent}{0pt}
 \linespread{0.95}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=1.35em,itemsep=0pt,topsep=0.5pt,parsep=0pt,partopsep=0pt}
-\titleformat{\section}{\large\bfseries}{}{0pt}{}
-\titlespacing*{\section}{0pt}{4pt}{2pt}
+\setlist[itemize]{leftmargin=1.35em,itemsep=0pt,topsep=0pt,parsep=0pt,partopsep=0pt}
+\titleformat{\section}{\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{4pt}{0pt}
 \newcommand{\cvsection}[1]{\section*{#1}\vspace{3pt}\hrule height 0.45pt\vspace{3pt}}
 \newcommand{\dated}[2]{#1\hfill#2\par}
 \newcommand{\project}[3]{\vspace{2pt}\href{#1}{\textcolor{linkblue}{\textbf{#2}}}\\[-1pt]#3\par}
@@ -26,7 +26,7 @@
 \begin{document}
 
 {\centering
-  {\fontsize{18}{19}\selectfont\textbf{Базаррагчаагийн Авиддарам}}\\[1pt]
+  {\fontsize{18}{19}\selectfont\textbf{Базаррагчаагийн Авиддарам}}\\[0pt]
   \textbf{Програм хангамжийн инженер · Full-stack ба AI агент}\\[1pt]
   Улаанбаатар · Remote эсвэл гадаадад ажиллах боломжтой · +976 9456 8799 · \href{mailto:hi@darjs.dev}{hi@darjs.dev} · \href{https://github.com/darjss}{github.com/darjss} · \href{https://darjs.dev}{darjs.dev}
 \par}
@@ -35,7 +35,7 @@
 Production систем бүтээж, нэвтрүүлсэн 2.5 жилийн туршлагатай програм хангамжийн инженер. Үндэсний банкинд төлбөрийн функц, нээлттэй эхийн CRM-д AI агентын платформ, гэр бүлийнхээ бизнест онлайн дэлгүүр бүтээсэн. Функцийг schema, UI, deploy хүртэл бүрэн хариуцаж, даалгахыг хүлээлгүй эхлүүлдэг. erxes-д кодын чанар, SEO сайжруулах ажлыг санаачлан удирдаж байна. Англи хэлээр чөлөөтэй харилцдаг.
 
 \cvsection{Ажлын туршлага}
-\dated{\textbf{erxes · Backend инженер, full stack · Remote}}{\textbf{2026.06 – одоог хүртэл}}
+\dated{\textbf{\href{https://github.com/erxes/erxes}{\textcolor{linkblue}{erxes}} · Backend инженер, full stack · Remote}}{\textbf{2026.06 – одоог хүртэл}}
 Нээлттэй эхийн CRM, хэрэглэгчийн туршлагыг удирдах платформ. 4 сард 6 repository-д 117 PR merge хийсэн.
 \begin{itemize}
   \item TypeScript, Mastra, AI SDK, React, MongoDB ашиглан erxes-ийн AI агент plugin-ийн ихэнхийг нэг инженертэй хамт бүтээсэн: Mastra runtime, persistent memory, агентын skill, streaming чат, PPTX, PDF, график artifact, монгол ярианы горим.
@@ -65,14 +65,15 @@ SocialPay нь Голомт банкны төлбөр, цахим хэтэвчн
 \begin{itemize}
   \item \href{https://github.com/darjss/tranzfer-v2}{\textcolor{linkblue}{\textbf{Tranzfer}}}. Контент бүтээгч, эвлүүлэгчдэд зориулсан файл дамжуулах үйлчилгээ. Тасарсан дамжуулалтыг үргэлжлүүлдэг. Олон нийтэд нээхэд бэлтгэж байна. Solid 2, Effect, Alchemy, Cloudflare D1, R2. PR бүрийн preview орчин, CI-д e2e тест.
   \item \href{https://github.com/darjss/khaan-client}{\textcolor{linkblue}{\textbf{khaan-client}}}. Хаан банкны баримтжуулаагүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах. Amerik Vitamin-ийн backend-д орж ирсэн шилжүүлгийг захиалгатай тулгадаг.
-  \item \href{https://github.com/darjss/herdr-orchestrate}{\textcolor{linkblue}{\textbf{Herdr Orchestrate}}}. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: төлөв хадгалах, тусгаарласан Git worktree, model routing. GitHub дээр 7 од.
+  \item \href{https://github.com/darjss/herdr-orchestrate}{\textcolor{linkblue}{\textbf{Herdr Orchestrate}}}. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: төлөв хадгалах, тусгаарласан Git worktree, model routing.
+  \item \href{https://github.com/darjss/dms-bar-usage}{\textcolor{linkblue}{\textbf{DMS plugin-ууд}}}. Linux-ийн DankMaterialShell-д зориулсан plugin-ууд: Codex, Claude Code-ийн лимит харуулдаг Go сервистэй widget, Call Relay overlay, дэлгэц cast хийх удирдлага. QML, Go.
 \end{itemize}
 
 \cvsection{Ур чадвар}
-\textbf{Програмчлалын хэл:} TypeScript, Java, Go, Kotlin, Python, SQL\\
-\textbf{AI:} Mastra, AI SDK, MCP, tool calling, memory, human-in-the-loop, voice\\
-\textbf{Backend:} Node.js, Bun, Spring Boot, Hono, GraphQL, tRPC, PostgreSQL, Oracle, MongoDB, Redis\\
-\textbf{Frontend ба infra:} React, SolidJS, Astro, Cloudflare Workers, Durable Objects, D1, R2, Docker, ArgoCD, GitHub Actions
+\textbf{Програмчлалын хэл:} TypeScript, Java, Go, Kotlin, Python, SQL, QML\\
+\textbf{AI:} Mastra, AI SDK, MCP, tool calling, agent memory, human-in-the-loop, voice\\
+\textbf{Backend ба өгөгдөл:} Bun, Node.js, Elysia, Hono, Effect, tRPC, GraphQL, Spring Boot, Drizzle, PostgreSQL, Oracle, MongoDB, Redis\\
+\textbf{Frontend ба infra:} SolidJS, React, Astro, TanStack, Tailwind, Cloudflare Workers, Durable Objects, D1, R2, Alchemy, Docker, ArgoCD
 
 \cvsection{Боловсрол}
 \dated{\textbf{МУИС} · Мэдээллийн систем, бакалавр}{2022 – 2027, диплом 2027.01}

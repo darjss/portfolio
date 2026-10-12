@@ -9,7 +9,7 @@ Production систем бүтээж, нэвтрүүлсэн 2.5 жилийн т
 
 ## Ажлын туршлага
 
-### erxes · Backend инженер, full stack · Remote
+### [erxes](https://github.com/erxes/erxes) · Backend инженер, full stack · Remote
 **2026.06 – одоог хүртэл**
 
 Нээлттэй эхийн CRM, хэрэглэгчийн туршлагыг удирдах платформ. 4 сард 6 repository-д 117 PR merge хийсэн.
@@ -43,14 +43,15 @@ SocialPay нь Голомт банкны төлбөр, цахим хэтэвчн
 
 - **[Tranzfer](https://github.com/darjss/tranzfer-v2)**. Контент бүтээгч, эвлүүлэгчдэд зориулсан файл дамжуулах үйлчилгээ. Тасарсан дамжуулалтыг үргэлжлүүлдэг. Олон нийтэд нээхэд бэлтгэж байна. Solid 2, Effect, Alchemy, Cloudflare D1, R2. PR бүрийн preview орчин, CI-д e2e тест.
 - **[khaan-client](https://github.com/darjss/khaan-client)**. Хаан банкны баримтжуулаагүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах. Amerik Vitamin-ийн backend-д орж ирсэн шилжүүлгийг захиалгатай тулгадаг.
-- **[Herdr Orchestrate](https://github.com/darjss/herdr-orchestrate)**. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: төлөв хадгалах, тусгаарласан Git worktree, model routing. GitHub дээр 7 од.
+- **[Herdr Orchestrate](https://github.com/darjss/herdr-orchestrate)**. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: төлөв хадгалах, тусгаарласан Git worktree, model routing.
+- **[DMS plugin-ууд](https://github.com/darjss/dms-bar-usage)**. Linux-ийн DankMaterialShell-д зориулсан plugin-ууд: Codex, Claude Code-ийн лимит харуулдаг Go сервистэй widget, Call Relay overlay, дэлгэц cast хийх удирдлага. QML, Go.
 
 ## Ур чадвар
 
-**Програмчлалын хэл:** TypeScript, Java, Go, Kotlin, Python, SQL
-**AI:** Mastra, AI SDK, MCP, tool calling, memory, human-in-the-loop, voice
-**Backend:** Node.js, Bun, Spring Boot, Hono, GraphQL, tRPC, PostgreSQL, Oracle, MongoDB, Redis
-**Frontend ба infra:** React, SolidJS, Astro, Cloudflare Workers, Durable Objects, D1, R2, Docker, ArgoCD, GitHub Actions
+**Програмчлалын хэл:** TypeScript, Java, Go, Kotlin, Python, SQL, QML
+**AI:** Mastra, AI SDK, MCP, tool calling, agent memory, human-in-the-loop, voice
+**Backend ба өгөгдөл:** Bun, Node.js, Elysia, Hono, Effect, tRPC, GraphQL, Spring Boot, Drizzle, PostgreSQL, Oracle, MongoDB, Redis
+**Frontend ба infra:** SolidJS, React, Astro, TanStack, Tailwind, Cloudflare Workers, Durable Objects, D1, R2, Alchemy, Docker, ArgoCD
 
 ## Боловсрол
 

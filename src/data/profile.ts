@@ -16,19 +16,19 @@ export const profile = {
   skills: [
     {
       label: "Languages",
-      items: ["TypeScript", "Java", "Go", "Kotlin", "Python", "SQL"],
+      items: ["TypeScript", "Java", "Go", "Kotlin", "Python", "SQL", "QML"],
     },
     {
       label: "AI",
-      items: ["Mastra", "AI SDK", "MCP", "tool calling", "memory", "human-in-the-loop", "voice"],
+      items: ["Mastra", "AI SDK", "MCP", "tool calling", "agent memory", "human-in-the-loop", "voice"],
     },
     {
-      label: "Backend",
-      items: ["Node.js", "Bun", "Spring Boot", "Hono", "GraphQL", "tRPC", "PostgreSQL", "Oracle", "MongoDB", "Redis"],
+      label: "Backend and data",
+      items: ["Bun", "Node.js", "Elysia", "Hono", "Effect", "tRPC", "GraphQL", "Spring Boot", "Drizzle", "PostgreSQL", "Oracle", "MongoDB", "Redis"],
     },
     {
       label: "Frontend and infra",
-      items: ["React", "SolidJS", "Astro", "Cloudflare Workers", "Durable Objects", "D1", "R2", "Docker", "ArgoCD", "GitHub Actions"],
+      items: ["SolidJS", "React", "Astro", "TanStack", "Tailwind", "Cloudflare Workers", "Durable Objects", "D1", "R2", "Alchemy", "Docker", "ArgoCD"],
     },
   ],
 }
