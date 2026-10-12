@@ -1,5 +1,5 @@
-\documentclass[10pt,letterpaper]{article}
-\usepackage[margin=0.6in]{geometry}
+\documentclass[9.5pt,letterpaper]{article}
+\usepackage[margin=0.45in]{geometry}
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
 \usepackage{polyglossia}
@@ -9,76 +9,70 @@
 \definecolor{linkblue}{RGB}{20,91,190}
 \hypersetup{colorlinks=true,urlcolor=linkblue,linkcolor=linkblue}
 \usepackage{enumitem}
-\usepackage{needspace}
 \usepackage{parskip}
 \usepackage{tabularx}
 \usepackage{titlesec}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\linespread{1.0}
+\linespread{0.95}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{leftmargin=1.4em,itemsep=1.5pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+\setlist[itemize]{leftmargin=1.35em,itemsep=0pt,topsep=0.5pt,parsep=0pt,partopsep=0pt}
 \titleformat{\section}{\large\bfseries}{}{0pt}{}
-\titlespacing*{\section}{0pt}{6pt}{2pt}
+\titlespacing*{\section}{0pt}{4pt}{2pt}
 \newcommand{\cvsection}[1]{\section*{#1}\vspace{3pt}\hrule height 0.45pt\vspace{3pt}}
-\newcommand{\dated}[2]{\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}#1 & #2\end{tabular*}\par}
+\newcommand{\dated}[2]{#1\hfill#2\par}
 \newcommand{\project}[3]{\vspace{2pt}\href{#1}{\textcolor{linkblue}{\textbf{#2}}}\\[-1pt]#3\par}
 
 \begin{document}
 
-\begin{center}
-  {\fontsize{18}{20}\selectfont\textbf{Базаррагчаагийн Авиддарам}}\\[2pt]
-  \textbf{Програм хангамжийн инженер · Full-stack ба AI агент}\\[2pt]
-  Улаанбаатар · Remote болон гадаадад шилжин ажиллахад нээлттэй · +976 9456 8799 · \href{mailto:hi@darjs.dev}{hi@darjs.dev} · \href{https://github.com/darjss}{github.com/darjss} · \href{https://darjs.dev}{darjs.dev}
-\end{center}
+{\centering
+  {\fontsize{18}{19}\selectfont\textbf{Базаррагчаагийн Авиддарам}}\\[1pt]
+  \textbf{Програм хангамжийн инженер · Full-stack ба AI агент}\\[1pt]
+  Улаанбаатар · Remote эсвэл гадаадад ажиллах боломжтой · +976 9456 8799 · \href{mailto:hi@darjs.dev}{hi@darjs.dev} · \href{https://github.com/darjss}{github.com/darjss} · \href{https://darjs.dev}{darjs.dev}
+\par}
 
 \cvsection{Товч танилцуулга}
-Production систем бүтээж, нэвтрүүлсэн 2.5 жилийн туршлагатай програм хангамжийн инженер. Үндэсний банкинд төлбөрийн функцууд, нээлттэй эхийн CRM-д AI агент платформ, гэр бүлийнхээ бизнест онлайн дэлгүүр бүтээсэн. Функцийг схемээс эхлээд UI, deploy хүртэл бүрэн хариуцдаг, хэн ч даалгаагүй ажлыг өөрөө эхлүүлдэг. erxes-д код чанарын болон SEO санаачилгыг гаргаж, удирдаж байна. Англи хэл чөлөөтэй.
+Production систем бүтээж, нэвтрүүлсэн 2.5 жилийн туршлагатай програм хангамжийн инженер. Үндэсний банкинд төлбөрийн функц, нээлттэй эхийн CRM-д AI агентын платформ, гэр бүлийнхээ бизнест онлайн дэлгүүр бүтээсэн. Функцийг schema, UI, deploy хүртэл бүрэн хариуцаж, даалгахыг хүлээлгүй эхлүүлдэг. erxes-д кодын чанар, SEO сайжруулах ажлыг санаачлан удирдаж байна. Англи хэлээр чөлөөтэй харилцдаг.
 
 \cvsection{Ажлын туршлага}
-\needspace{10\baselineskip}
 \dated{\textbf{erxes · Backend инженер, full stack · Remote}}{\textbf{2026.06 – одоог хүртэл}}
-Нээлттэй эхийн CRM ба хэрэглэгчийн туршлагын платформ. 4 сарын дотор 6 repository-д 117 PR merge хийсэн.
+Нээлттэй эхийн CRM, хэрэглэгчийн туршлагыг удирдах платформ. 4 сард 6 repository-д 117 PR merge хийсэн.
 \begin{itemize}
-  \item TypeScript, Mastra, AI SDK, React, MongoDB дээр erxes-ийн AI агент plugin-ийн ихэнх хэсгийг өөр нэг инженертэй хамт бүтээсэн: Mastra runtime, байнгын санах ой, агент skill, streaming чат, PPTX, PDF, график artifact, яриаг нь тасалж болдог монгол дуут горим.
-  \item Production дахь tool-call алдааг бууруулсан. Deal үүсгэх 45 дуудлага бүгд ID шалгалт дээр унаж, нийт tool дуудлагын 19 орчим хувь буруу аргументаас болж алдаа өгч байсан. Нэрээр нь ID олдог resolver болон GraphQL схемийн бодит мэдээллийг tool тодорхойлолтод оруулж хоёуланг нь зассан.
-  \item Агентыг SSRF, DNS rebinding, zip bomb, Mermaid болон SVG XSS халдлагаас хамгаалсан. Устгах үйлдэлд хүний зөвшөөрөл, сервер талаас цуцлах боломж, tenant тус бүрээр тусгаарласан cache нэмсэн.
-  \item MCP ба API интеграцийн давхарга болох Executor болон Cloudflare OS-ийг erxes дотор суурилсан бүтээгдэхүүн болгон нэгтгэсэн: tenant тус бүрийн provisioning, нууц үггүй SSO.
-  \item Plugin-ууд erxes monorepo-оос гадуур тусдаа repository-д ажиллахад дутуу байсан хэсгүүдийг нэмсэн: dev орчинд ачаалах, өөрийн UI remote-ийг үйлчлэх, нийтлэг theme. Одоо plugin marketplace болон hackathon зохион байгуулах багт ажиллаж байна.
-  \item Код чанарын санаачилгыг гаргаж, CTO-тай хамт удирдаж байна. Нэг plugin-ийг бүхэлд нь 280 файл хамарсан 12 PR-аар schema-first GraphQL codegen руу шилжүүлж, build үеийн contract шалгалт нэмж, бусад plugin багуудад шилжихэд тусалж байна.
-  \item Вэбсайтад суулгадаг messenger widget-ийн bundle-ийг 72–82\%-иар багасгасан: Lighthouse mobile 63 → 86, total blocking time 2.4 с → 0.56 с. Өөрийн санаачилсан SEO ажлын хүрээнд erxes.io дээрх 18 секундын LCP-г зассан.
+  \item TypeScript, Mastra, AI SDK, React, MongoDB ашиглан erxes-ийн AI агент plugin-ийн ихэнхийг нэг инженертэй хамт бүтээсэн: Mastra runtime, persistent memory, агентын skill, streaming чат, PPTX, PDF, график artifact, монгол ярианы горим.
+  \item Production орчны tool call алдааг бууруулсан. Deal үүсгэх 45 дуудлага бүгд ID шалгалтад унаж, нийт tool call-ийн 19 орчим хувь буруу аргументаас болж алдаж байсан. Нэрээр ID олдог resolver нэмж, GraphQL schema-ийн бодит мэдээллийг tool-ийн тодорхойлолтод оруулж, хоёр алдааг зассан.
+  \item Агентыг SSRF, DNS rebinding, zip bomb, Mermaid болон SVG XSS халдлагаас хамгаалсан. Устгах үйлдэлд хүнээс зөвшөөрөл авах, серверээс цуцлах боломж, tenant бүрд тусгаарласан cache нэмсэн.
+  \item MCP, API холбодог Executor болон Cloudflare OS-ийг erxes-д нэгтгэн суулгасан: tenant бүрийн provisioning, нууц үггүй SSO.
+  \item Plugin-уудыг erxes monorepo-оос тусдаа repository-д ажиллуулахад дутуу байсан боломжуудыг нэмсэн: dev орчинд ачаалах, UI remote-оо өөрөө serve хийх, нэгдсэн theme. Одоо plugin marketplace, hackathon зохион байгуулах багуудад ажиллаж байна.
+  \item Кодын чанарын ажлыг санаачилж, CTO-тай хамт удирдаж байна. Нэг plugin-ийг бүхэлд нь 280 файл хамарсан 12 PR-аар schema-first GraphQL codegen-д шилжүүлсэн. Build үед contract шалгадаг болгож, бусад plugin багийн шилжилтэд тусалж байна.
+  \item Вэбсайтад суулгадаг messenger widget-ийн bundle-ийг 72–82\%-иар багасгасан: Lighthouse mobile 63 → 86, total blocking time 2.4 с → 0.56 с. Санаачлан удирдаж буй SEO ажлаар erxes.io-ийн 18 секундын LCP-г зассан.
 \end{itemize}
-\needspace{10\baselineskip}
 \dated{\textbf{Amerik Vitamin · Үүсгэн байгуулагч, инженер · Гэр бүлийн бизнес}}{\textbf{2025.07 – одоог хүртэл}}
 \begin{itemize}
-  \item Ээжийнхээ АНУ-аас витамин импортлох бизнест зориулсан \href{https://amerikvitamin.mn}{amerikvitamin.mn} онлайн дэлгүүрийг бүтээж, ажиллуулж байна: Astro ба Solid storefront, React админ, Cloudflare Workers дээр Hono ба tRPC, Postgres, QPay төлбөр. 652 бүтээгдэхүүн, 483 вэб захиалга, 367 хэрэглэгч.
-  \item Хэрэглэгчийн илгээсэн зургаар бүтээгдэхүүнийг таньж, чатаар захиалга авдаг Messenger AI худалдааны агент хөгжүүлж байна.
+  \item Ээжийнхээ АНУ-аас витамин импортолдог бизнест зориулж \href{https://amerikvitamin.mn}{amerikvitamin.mn} онлайн дэлгүүр бүтээж, ажиллуулж байна: Astro, Solid, React, Hono, tRPC, Cloudflare Workers, Postgres, QPay. 652 бүтээгдэхүүн, 483 вэб захиалга, 367 хэрэглэгч.
+  \item Хэрэглэгчийн илгээсэн зургаар бүтээгдэхүүнийг таньж, чатаар захиалга авдаг Messenger AI борлуулалтын агент хийж байна.
 \end{itemize}
-\needspace{10\baselineskip}
 \dated{\textbf{Голомт банк · Програм хангамжийн инженер, SocialPay backend баг}}{\textbf{2024.05 – 2025.06}}
-SocialPay бол Голомт банкны төлбөр, хэтэвчний апп. Хичээлийн үеэр цагийн, амралтын үеэр бүтэн цагаар ажилласан. Java, Spring Boot, Oracle, ArgoCD.
+SocialPay нь Голомт банкны төлбөр, цахим хэтэвчний апп. Хичээлтэй үед цагийн, амралтаар бүтэн цагаар ажилласан. Java, Spring Boot, Oracle, ArgoCD.
 \begin{itemize}
-  \item Жижиг, дунд бизнес эрхлэгчдэд зориулсан SME аппын backend-ийг эхний 4 сартаа ганцаараа бүхэлд нь бичиж, Spring Boot-ийг ажил дээрээ сурсан: данс, гүйлгээ, POS гүйлгээний түүх, цаас захиалга, засварын хүсэлт. UAT болон production орчинд гаргаж, DevOps багтай хамт үндсэн CI/CD-г тохируулсан. Олон нийтэд нээхийг банк түр зогсоосон.
-  \item SocialPay-д MostMoney QR төлбөрийг backend талд бүрэн хариуцсан: QPay-ийн хажууд шинэ QR уншилтын урсгал, дансны шилжүүлгээр тооцоо хийдэг.
-  \item Монголын IBAN шилжилтэд SocialPay-ийн хэсгийг хийсэн: Монголбанкаар дамжуулан IBAN хайх, Дансны нэгдсэн санд бүртгэх. Ингэснээр аль ч банкны апп хэрэглэгчийг утасны дугаар эсвэл имэйлээр нь олох боломжтой болсон.
-  \item И-баримтын интеграцийг эхнээс нь дуустал хариуцсан. Өмнө нь Firebase console-оос илгээгээд хадгалагддаггүй байсан push мэдэгдлийг хадгалдаг болгож шинээр зохион бүтээсэн.
-  \item Багийн ахлагчийг амралттай үед удирдлагын анхаарлын төвд байсан чухал ажлуудыг нь хариуцсан. Apple Pay нэвтрүүлэхэд дэмжлэг үзүүлж, WeChat Pay QR deep link-ийн алдааг WeChat-ийн инженерүүдтэй хамт шийдсэн.
+  \item Жижиг, дунд бизнес эрхлэгчдийн SME аппын backend-ийг эхний 4 сартаа ганцаараа бүрэн бичиж, Spring Boot-ийг ажил дээрээ сурсан: данс, гүйлгээ, POS гүйлгээний түүх, цаасны захиалга, засварын хүсэлт. UAT, production-д deploy хийж, DevOps багтай анхан шатны CI/CD тохируулсан. Банк олон нийтэд нээхийг хойшлуулсан.
+  \item SocialPay-ийн MostMoney QR төлбөрийн backend-ийг бүрэн хариуцсан: QPay-тай зэрэгцэх шинэ QR урсгал, дансны шилжүүлгээр тооцоо хийдэг.
+  \item Монголын IBAN шилжилтийн SocialPay-д хамаарах ажлыг хийсэн: Монголбанкаар IBAN хайх, Дансны нэгдсэн санд бүртгэх. Ингэснээр аль ч банкны апп хэрэглэгчийг утасны дугаар эсвэл имэйлээр нь олох боломжтой болсон.
+  \item И-баримтын интеграцийг бүрэн хариуцсан. Firebase console-оос илгээдэг, өмнө нь хадгалдаггүй байсан push мэдэгдлийг хадгалах шийдэл хийсэн.
+  \item Багийн ахлагчийн амралтаар удирдлагын анхааралд байсан чухал ажлуудыг нь хариуцсан.
 \end{itemize}
 
 \cvsection{Сонгосон төслүүд}
 \begin{itemize}
-  \item \href{https://github.com/darjss/tranzfer-v2}{\textcolor{linkblue}{\textbf{Tranzfer}}}. Контент бүтээгч, засварлагчдад зориулсан, тасарсан ч үргэлжлүүлж болдог файл дамжуулах үйлчилгээ. Олон нийтэд нээхэд бэлтгэж байна. Cloudflare D1, R2 дээр Solid 2, Effect, Alchemy. Staging, production, PR тус бүрийн preview орчин, CI дээр e2e тест, Axiom telemetry.
-  \item \href{https://github.com/darjss/khaan-client}{\textcolor{linkblue}{\textbf{khaan-client}}}. Хаан банкны баримт бичиггүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах. Amerik Vitamin-ийн backend дээр орж ирсэн шилжүүлгийг захиалгатай тулгадаг.
-  \item \href{https://github.com/darjss/herdr-orchestrate}{\textcolor{linkblue}{\textbf{Herdr Orchestrate}}}. Олон AI coding агентыг харагдах terminal session-д ажиллуулдаг хэрэгсэл: тогтвортой төлөв, тусгаарлагдсан Git worktree, моделийн чиглүүлэлт. GitHub дээр 7 од.
-  \item \href{https://github.com/darjss/plugged}{\textcolor{linkblue}{\textbf{Plugged Audio}}}. Монголд зориулсан IEM чихэвчний дэлгүүр, нээлтэд бэлтгэж байна. Cloudflare D1 дээр Astro, Solid, Elysia, Drizzle, QPay төлбөр, Vectorize дээр semantic ба түлхүүр үгийн хосолсон хайлт, Android утсыг SMS gateway болгон нэвтрэх код илгээдэг.
+  \item \href{https://github.com/darjss/tranzfer-v2}{\textcolor{linkblue}{\textbf{Tranzfer}}}. Контент бүтээгч, эвлүүлэгчдэд зориулсан файл дамжуулах үйлчилгээ. Тасарсан дамжуулалтыг үргэлжлүүлдэг. Олон нийтэд нээхэд бэлтгэж байна. Solid 2, Effect, Alchemy, Cloudflare D1, R2. PR бүрийн preview орчин, CI-д e2e тест.
+  \item \href{https://github.com/darjss/khaan-client}{\textcolor{linkblue}{\textbf{khaan-client}}}. Хаан банкны баримтжуулаагүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах. Amerik Vitamin-ийн backend-д орж ирсэн шилжүүлгийг захиалгатай тулгадаг.
+  \item \href{https://github.com/darjss/herdr-orchestrate}{\textcolor{linkblue}{\textbf{Herdr Orchestrate}}}. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: төлөв хадгалах, тусгаарласан Git worktree, model routing. GitHub дээр 7 од.
 \end{itemize}
 
 \cvsection{Ур чадвар}
 \textbf{Програмчлалын хэл:} TypeScript, Java, Go, Kotlin, Python, SQL\\
 \textbf{AI:} Mastra, AI SDK, MCP, tool calling, memory, human-in-the-loop, voice\\
 \textbf{Backend:} Node.js, Bun, Spring Boot, Hono, GraphQL, tRPC, PostgreSQL, Oracle, MongoDB, Redis\\
-\textbf{Frontend ба infra:} React, SolidJS, Astro, Cloudflare Workers, Durable Objects, D1, R2, Docker, ArgoCD, GitHub Actions\\
-\textbf{Хэл:} Монгол хэл төрөлх, англи хэл чөлөөтэй
+\textbf{Frontend ба infra:} React, SolidJS, Astro, Cloudflare Workers, Durable Objects, D1, R2, Docker, ArgoCD, GitHub Actions
 
 \cvsection{Боловсрол}
 \dated{\textbf{МУИС} · Мэдээллийн систем, бакалавр}{2022 – 2027, диплом 2027.01}
