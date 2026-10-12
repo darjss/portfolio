@@ -13,19 +13,50 @@ export const projects: Project[] = [
   {
     slug: "vit-store",
     name: "vit-store",
-    pitch: "A real, deployed commerce platform with payments, ops tooling, and a conversational AI shopping agent.",
+    pitch: "The online store for my mom's supplement import business, live at amerikvitamin.mn.",
     description:
-      "Production-scale Mongolian ecommerce monorepo for US-imported vitamins: mobile storefront, admin and inventory dashboard, API gateway, QPay checkout, OTP login, and a Facebook Messenger AI shopping agent with vision-based product identification.",
-    stack: ["TypeScript", "Bun", "Turborepo", "Astro", "SolidJS", "React 19", "Hono", "tRPC", "Drizzle", "PostgreSQL", "Cloudflare Workers", "Durable Objects", "Workers AI"],
+      "Astro and Solid storefront, React admin, Hono and tRPC on Cloudflare Workers, Postgres, QPay checkout, and OTP login. 652 products, 483 web orders, 367 customers. A Messenger AI shopping agent that identifies products from customer photos is in development.",
+    stack: ["TypeScript", "Astro", "SolidJS", "React", "Hono", "tRPC", "Drizzle", "PostgreSQL", "Cloudflare Workers", "Durable Objects", "R2", "QPay", "PostHog"],
     sourceUrl: "https://github.com/darjss/vit-store",
+    websiteUrl: "https://amerikvitamin.mn",
+    featured: true,
+  },
+  {
+    slug: "tranzfer",
+    name: "tranzfer",
+    pitch: "Resumable file delivery for creators and editors, getting ready for public launch.",
+    description:
+      "Designed around uploads that recover after dropped connections. Every PR gets its own preview environment with e2e tests in CI, next to staging and production, with Axiom telemetry.",
+    stack: ["TypeScript", "Solid 2", "Effect", "Alchemy", "better-auth", "Drizzle", "Cloudflare D1", "R2", "Axiom"],
+    sourceUrl: "https://github.com/darjss/tranzfer-v2",
+    featured: true,
+  },
+  {
+    slug: "khaan-client",
+    name: "khaan-client",
+    pitch: "An undocumented banking flow, turned into a typed, tested SDK.",
+    description:
+      "TypeScript SDK for Khan Bank: OTP device setup, remembered-device login, transactions, typed errors, and automatic transfer reconciliation through an async iterator. Matches incoming bank transfers to orders in the Amerik Vitamin backend.",
+    stack: ["TypeScript", "ky", "Valibot", "async iterators", "Vitest"],
+    sourceUrl: "https://github.com/darjss/khaan-client",
+    featured: true,
+  },
+  {
+    slug: "herdr-orchestrate",
+    name: "herdr-orchestrate",
+    pitch: "Run several AI coding agents in visible terminal sessions, with state that survives restarts.",
+    description:
+      "Pi-native orchestration for visible and auditable Herdr worker sessions, with durable run state, isolated Git worktrees, model routing, background waiting, run boards, and preview-first cleanup.",
+    stack: ["TypeScript", "Node.js", "Pi packages", "Herdr plugins", "Git worktrees"],
+    sourceUrl: "https://github.com/darjss/herdr-orchestrate",
     featured: true,
   },
   {
     slug: "plugged",
     name: "plugged",
-    pitch: "A curated IEM storefront built around local payments, identity, and hybrid semantic search.",
+    pitch: "A pre-launch in-ear monitor store for Mongolia.",
     description:
-      "Curated IEM storefront and admin dashboard for Mongolia, with cart and order tracking, QPay checkout, SMS OTP, product management, PostHog analytics, and hybrid semantic/keyword catalog search.",
+      "Storefront and admin with cart and order tracking, QPay checkout, hybrid semantic and keyword search on Vectorize, and SMS login codes sent through an Android phone used as the SMS gateway.",
     stack: ["TypeScript", "Astro", "SolidJS", "Elysia", "Eden Treaty", "Drizzle", "Cloudflare D1", "Vectorize", "Better Auth", "Tailwind CSS"],
     sourceUrl: "https://github.com/darjss/plugged",
     featured: true,
@@ -38,34 +69,14 @@ export const projects: Project[] = [
       "Three-part system that detects Android calls, relays events through a strongly consistent edge service, and displays ringtone-enabled overlays above fullscreen Linux apps, with persistent delivery for ended-call events.",
     stack: ["Kotlin", "Android CallScreeningService", "Hono", "Cloudflare Workers", "Durable Objects", "QML", "Wayland layer shell"],
     sourceUrl: "https://github.com/darjss/callrelay",
-    featured: true,
-  },
-  {
-    slug: "herdr-orchestrate",
-    name: "herdr-orchestrate",
-    pitch: "Multi-model agent orchestration that is persistent, visible, isolated, and safe.",
-    description:
-      "Pi-native orchestration for visible and auditable Herdr worker sessions, with durable run state, isolated Git worktrees, model routing, background waiting, run boards, and preview-first cleanup.",
-    stack: ["TypeScript", "Node.js", "Pi packages", "Herdr plugins", "Git worktrees"],
-    sourceUrl: "https://github.com/darjss/herdr-orchestrate",
-    featured: true,
-  },
-  {
-    slug: "khaan-client",
-    name: "khaan-client",
-    pitch: "An undocumented banking flow, turned into a typed, tested SDK.",
-    description:
-      "Framework-independent Khan Bank TypeScript SDK for three-step SOTP authentication, remembered-device relogin, transaction retrieval, typed errors, and automatic transfer reconciliation through a hook-based async iterator.",
-    stack: ["TypeScript", "ky", "Valibot", "async iterators", "Vitest"],
-    sourceUrl: "https://github.com/darjss/khaan-client",
-    featured: true,
+    featured: false,
   },
   {
     slug: "sisi-agent",
     name: "sisi-agent",
     pitch: "University portal data, exposed to AI agents through MCP.",
     description:
-      "AI assistant for the National University of Mongolia: a local MCP server over university portal data, a Chrome extension, AI server, experimental web UI, and thesis report.",
+      "My bachelor thesis. AI assistant for the National University of Mongolia: a local MCP server over university portal data, a Chrome extension, AI server, experimental web UI, and thesis report.",
     stack: ["TypeScript", "Bun workspaces", "Turborepo", "MCP", "WXT"],
     sourceUrl: "https://github.com/darjss/sisi-agent",
     featured: false,

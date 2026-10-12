@@ -20,8 +20,6 @@ export default function CvReverse(props: { animated: boolean; onClose: () => voi
     })
   })
 
-  const featured = projects.filter((project) => project.featured)
-
   return (
     <div class="cv-root fixed inset-0 z-[90] overflow-y-auto bg-[#fafaf7] text-[#16130e]">
       <div class="cv-no-print sticky top-0 z-10 flex items-center justify-between border-b border-[#16130e]/15 bg-[#fafaf7]/95 px-5 py-3 font-mono text-[10px] tracking-[0.25em] uppercase backdrop-blur-sm sm:px-8">
@@ -51,13 +49,23 @@ export default function CvReverse(props: { animated: boolean; onClose: () => voi
         <header class="border-b-2 border-[#16130e] pb-5">
           <h1 class="text-3xl font-bold tracking-tight">{profile.fullName}</h1>
           <p class="mt-1 text-sm text-[#16130e]/70">
-            {profile.role} — {profile.location}
+            {profile.role} · {profile.headline} — {profile.location}
           </p>
           <p class="mt-2 font-mono text-xs text-[#16130e]/60">
             {profile.email} · {profile.site.replace("https://", "")} ·{" "}
             {socials.find((s) => s.name === "github")?.url.replace("https://", "")}
           </p>
         </header>
+
+        <section class="mt-5 border-b border-[#16130e]/15 pb-5">
+          <h2 class="font-mono text-[11px] font-bold tracking-[0.3em] text-[#16130e]/50 uppercase">
+            Summary
+          </h2>
+          <p class="mt-2 text-sm leading-relaxed text-[#16130e]/85">{profile.summary}</p>
+          <p class="mt-2 font-mono text-[11px] text-[#16130e]/60">
+            {profile.location} · {profile.availability}
+          </p>
+        </section>
 
         <section class="mt-7">
           <h2 class="font-mono text-[11px] font-bold tracking-[0.3em] text-[#16130e]/50 uppercase">
@@ -101,12 +109,22 @@ export default function CvReverse(props: { animated: boolean; onClose: () => voi
           <h2 class="font-mono text-[11px] font-bold tracking-[0.3em] text-[#16130e]/50 uppercase">
             Selected Projects
           </h2>
-          <For each={featured}>
+          <For each={projects.filter((p) => p.featured)}>
             {(project) => (
               <div class="mt-4">
-                <h3 class="text-sm font-bold">{project.name}</h3>
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <h3 class="text-sm font-bold">{project.name}</h3>
+                  <a
+                    href={project.websiteUrl ?? project.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="font-mono text-[10px] text-[#16130e]/55 underline underline-offset-2"
+                  >
+                    source
+                  </a>
+                </div>
                 <p class="mt-0.5 text-sm leading-relaxed text-[#16130e]/80">
-                  {project.pitch}
+                  {project.pitch} {project.description}
                 </p>
                 <p class="mt-1 font-mono text-[11px] leading-relaxed text-[#16130e]/55">
                   {project.stack.join(" · ")}
@@ -114,6 +132,21 @@ export default function CvReverse(props: { animated: boolean; onClose: () => voi
               </div>
             )}
           </For>
+        </section>
+
+        <section class="mt-7">
+          <h2 class="font-mono text-[11px] font-bold tracking-[0.3em] text-[#16130e]/50 uppercase">
+            Skills
+          </h2>
+          <ul class="mt-3 space-y-1 text-sm leading-relaxed text-[#16130e]/80">
+            <For each={profile.skills}>
+              {(skill) => (
+                <li>
+                  <span class="font-bold">{skill.label}:</span> {skill.items.join(", ")}
+                </li>
+              )}
+            </For>
+          </ul>
         </section>
 
         <footer class="mt-9 border-t border-[#16130e]/20 pt-4 font-mono text-[11px] text-[#16130e]/60">
@@ -136,6 +169,9 @@ export default function CvReverse(props: { animated: boolean; onClose: () => voi
             full pdf:{" "}
             <a href={profile.cvUrl} class="underline underline-offset-2">
               CV.pdf
+            </a>{" "}
+            <a href={profile.cvMnUrl} class="underline underline-offset-2">
+              MN
             </a>
           </span>
         </footer>
