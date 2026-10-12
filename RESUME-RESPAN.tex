@@ -1,0 +1,79 @@
+\documentclass[9.5pt,letterpaper]{article}
+\usepackage[margin=0.45in]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\definecolor{linkblue}{RGB}{20,91,190}
+\hypersetup{colorlinks=true,urlcolor=linkblue,linkcolor=linkblue}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{0.95}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=1.35em,itemsep=0pt,topsep=0.5pt,parsep=0pt,partopsep=0pt}
+\titleformat{\section}{\large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{4pt}{2pt}
+\newcommand{\cvsection}[1]{\section*{#1}\vspace{3pt}\hrule height 0.45pt\vspace{3pt}}
+\newcommand{\dated}[2]{\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}#1 & #2\end{tabular*}\par}
+\newcommand{\project}[3]{\vspace{2pt}\href{#1}{\textcolor{linkblue}{\textbf{#2}}}\\[-1pt]#3\par}
+
+\begin{document}
+
+\begin{center}
+  {\fontsize{18}{19}\selectfont\textbf{Aviddaram Bazarragchaa}}\\[1pt]
+  \textbf{Software Engineer · Full-stack and AI agents}\\[2pt]
+  Ulaanbaatar, Mongolia · Open to remote or relocation · +976 9456 8799 · \href{mailto:hi@darjs.dev}{hi@darjs.dev} · \href{https://github.com/darjss}{github.com/darjss} · \href{https://darjs.dev}{darjs.dev}
+\end{center}
+
+\cvsection{Summary}
+Software engineer with about 2.5 years of shipping production systems: payment features at a national bank, an AI agent platform at an open-source CRM, and the online store for my family's business. I own features end to end, from schema to UI to deploy, and I start work nobody assigned, like the code quality and SEO initiatives I pitched and now lead at erxes. Fluent English.
+
+\cvsection{Experience}
+\dated{\textbf{erxes · Backend Engineer, full stack · Remote}}{\textbf{Jun 2026 – Present}}
+Open-source CRM and customer-experience platform. 117 merged PRs across 6 repositories in 4 months.
+\begin{itemize}
+  \item Built most of the erxes AI agent plugin with one other engineer on TypeScript, Mastra, AI SDK, React, and MongoDB: native Mastra runtime, persistent memory, agent skills, streaming chat, PPTX, PDF, and chart artifacts, and Mongolian voice with barge-in.
+  \item Cut production tool-call failures. 45 of 45 deal-creation calls failed on an ID check and about 19\% of all tool calls failed on bad arguments. Fixed both with a name-to-ID resolver and real GraphQL schema facts in tool definitions.
+  \item Hardened the agent against SSRF, DNS rebinding, zip bombs, and Mermaid and SVG XSS. Added human approval for destructive actions, server-driven cancellation, and tenant-isolated caches.
+  \item Integrated Executor, an MCP and API integration layer, and Cloudflare OS into erxes as an embedded product with per-tenant provisioning and passwordless SSO.
+  \item Added the missing pieces for plugins to live in their own repositories outside the erxes monorepo: dev-time loading, self-served UI remotes, and a shared theme. Now on the plugin marketplace and hackathon organizing teams.
+  \item Pitched a code quality initiative and lead it with the CTO. Moved a full plugin to schema-first GraphQL codegen in a 12-PR stack across 280 files, added build-time contract checks, and help other plugin teams migrate.
+  \item Cut the embeddable messenger widget bundle by 72–82\%: Lighthouse mobile 63 → 86, total blocking time 2.4 s → 0.56 s. Fixed an 18 s LCP on erxes.io as part of SEO work I pitched and run.
+\end{itemize}
+\dated{\textbf{Amerik Vitamin · Founder-engineer, family business}}{\textbf{Jul 2025 – Present}}
+\begin{itemize}
+  \item Built and run \href{https://amerikvitamin.mn}{amerikvitamin.mn}, the online store for my mom's US supplement import business: Astro and Solid storefront, React admin, Hono and tRPC on Cloudflare Workers, Postgres, QPay checkout. 652 products, 483 web orders, 367 customers.
+  \item Building a Messenger AI shopping agent that identifies products from customer photos and takes orders in chat.
+\end{itemize}
+\dated{\textbf{Golomt Bank · Software Engineer, SocialPay backend team}}{\textbf{May 2024 – Jun 2025}}
+SocialPay is Golomt's payments and wallet app. Part-time during semesters, full-time on breaks. Java, Spring Boot, Oracle, ArgoCD.
+\begin{itemize}
+  \item Wrote the full backend for the bank's SME merchant app alone in my first 4 months, learning Spring Boot on the job: accounts, transactions, POS history, supply orders, and repair requests. Shipped it to UAT and production and set up basic CI/CD with the devops team. The bank held the public launch.
+  \item Owned MostMoney QR payments in SocialPay: a new QR path next to QPay, settled through account-based transfers.
+  \item Built SocialPay's part of Mongolia's IBAN migration: IBAN lookup through the Bank of Mongolia and registration in the national account registry, so any bank app can find a user by phone number or email.
+  \item Owned the e-barimt e-receipt integration end to end. Designed stored push notifications, which until then went out from the Firebase console and were never saved.
+  \item Covered my team lead's exec-visible work during his leave. Supported the Apple Pay launch and debugged WeChat Pay QR deep links with WeChat's engineers.
+\end{itemize}
+\cvsection{Selected projects}
+\begin{itemize}
+  \item \href{https://github.com/darjss/tranzfer-v2}{\textcolor{linkblue}{\textbf{Tranzfer}}}. Resumable file delivery for creators and editors, preparing for public launch. Solid 2, Effect, and Alchemy on Cloudflare D1 and R2, with staging, production, and per-PR preview environments, e2e tests in CI, and Axiom telemetry.
+  \item \href{https://github.com/darjss/khaan-client}{\textcolor{linkblue}{\textbf{khaan-client}}}. Typed TypeScript SDK for Khan Bank's undocumented API: OTP device login, transactions, and automatic transfer reconciliation. Matches incoming bank transfers to orders in the Amerik Vitamin backend.
+  \item \href{https://github.com/darjss/herdr-orchestrate}{\textcolor{linkblue}{\textbf{Herdr Orchestrate}}}. Runs multiple AI coding agents in visible terminal sessions with durable state, isolated Git worktrees, and model routing. 7 stars.
+  \item \href{https://github.com/darjss/plugged}{\textcolor{linkblue}{\textbf{Plugged Audio}}}. Pre-launch in-ear monitor store for Mongolia. Astro, Solid, Elysia, and Drizzle on Cloudflare D1, QPay checkout, hybrid semantic and keyword search on Vectorize, and SMS login codes sent through an Android phone used as the SMS gateway.
+\end{itemize}
+
+\cvsection{Skills}
+\textbf{Languages:} TypeScript, Java, Go, Kotlin, Python, SQL\\
+\textbf{AI:} Mastra, AI SDK, MCP, tool calling, memory, human-in-the-loop, voice\\
+\textbf{Backend:} Node.js, Bun, Spring Boot, Hono, GraphQL, tRPC, PostgreSQL, Oracle, MongoDB, Redis\\
+\textbf{Frontend and infra:} React, SolidJS, Astro, Cloudflare Workers, Durable Objects, D1, R2, Docker, ArgoCD, GitHub Actions
+
+\cvsection{Education}
+\dated{\textbf{National University of Mongolia} · B.Sc. Information Systems}{2022 – 2027, diploma Jan 2027}
+\dated{\textbf{Pinecone Academy} · Software engineering bootcamp}{2023 – 2024}
+
+\end{document}
