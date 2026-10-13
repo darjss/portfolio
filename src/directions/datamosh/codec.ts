@@ -324,8 +324,11 @@ export function createCodec(opts: {
 
   source.onpaint = () => {
     sourceCtx.reset()
-    const transform = sourceCtx.drawElementImage(content, 0, 0)
-    source.updateElementGeometry(content, { canvasTransform: transform })
+    try {
+      source.updateElementGeometry(content, { canvasTransform: sourceCtx.drawElementImage(content, 0, 0) })
+    } catch {
+      return
+    }
     gl.bindTexture(gl.TEXTURE_2D, fresh)
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source)
@@ -334,7 +337,7 @@ export function createCodec(opts: {
   }
 
   const onMove = (e: PointerEvent) => {
-    if (pointer.x < -1e3) {
+    if (Math.hypot(e.clientX - pointer.x, e.clientY - pointer.y) > 240) {
       pointer.px = e.clientX
       pointer.py = e.clientY
     }
@@ -357,6 +360,7 @@ export function createCodec(opts: {
 
     const warm = (now - warmStart) / 2600
 
+    if (!decoded && still) keyPending = true
     if (decoded) {
       idleFor = energy > 0.5 ? 0 : idleFor + dt
       const anyStale = stale.includes(1)

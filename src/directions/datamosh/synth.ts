@@ -26,6 +26,7 @@ export type Synth = ReturnType<typeof createSynth>
 
 export function createSynth() {
   const ctx = new AudioContext()
+  void ctx.resume()
   const comp = ctx.createDynamicsCompressor()
   comp.threshold.value = -14
   comp.ratio.value = 6

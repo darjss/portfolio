@@ -691,7 +691,9 @@
   border: 1px solid var(--acid);
   color: var(--acid);
   font-size: 13px;
-  white-space: nowrap;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  text-align: center;
   animation: dm-blink 1.1s steps(2, jump-none) infinite;
 }
 

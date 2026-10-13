@@ -275,15 +275,17 @@ function Player(props: { onFail: () => void }) {
     })
     if (!codec) return props.onFail()
 
+    const inHud = (e: Event) => e.target instanceof Element && e.target.closest("[data-hud]") !== null
     const onDown = (e: PointerEvent) => {
-      if (e.target instanceof Element && e.target.closest("[data-hud]")) return
-      codec.keyframe()
-      if (!started()) {
-        setStarted(true)
-        startSound()
-      }
+      if (!inHud(e)) codec.keyframe()
+    }
+    const onClick = (e: MouseEvent) => {
+      if (inHud(e) || started()) return
+      setStarted(true)
+      startSound()
     }
     window.addEventListener("pointerdown", onDown)
+    window.addEventListener("click", onClick)
     const onScroll = () => setScroll(scroller.scrollTop)
     scroller.addEventListener("scroll", onScroll, { passive: true })
     const resize = new ResizeObserver(remeasure)
@@ -297,6 +299,7 @@ function Player(props: { onFail: () => void }) {
       synth?.destroy()
       resize.disconnect()
       window.removeEventListener("pointerdown", onDown)
+      window.removeEventListener("click", onClick)
       scroller.removeEventListener("scroll", onScroll)
     })
   })
