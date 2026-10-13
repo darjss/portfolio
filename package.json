@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "tsc --noEmit",
-    "deploy:workers": "bun run build && wrangler deploy"
+    "deploy": "env -u npm_execpath -u npm_config_user_agent node ./node_modules/alchemy/bin/cli.js deploy --yes --stage production",
+    "plan": "env -u npm_execpath -u npm_config_user_agent node ./node_modules/alchemy/bin/cli.js plan --stage production"
   },
   "dependencies": {
     "@solidjs/router": "^0.16.2",
@@ -15,12 +16,15 @@
     "three": "^0.185.1"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.63.2",
+    "@effect/platform-node": "^4.0.4",
     "@tailwindcss/vite": "^4.3.3",
     "@types/three": "^0.185.1",
+    "alchemy": "2.0.0-beta.83",
+    "effect": "^4.0.4",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.1.5",
-    "vite-plugin-solid": "^2.11.13",
-    "wrangler": "^4.114.0"
+    "vite-plugin-solid": "^2.11.13"
   }
 }
