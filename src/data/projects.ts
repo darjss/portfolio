@@ -11,6 +11,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "t3code",
+    name: "t3code",
+    pitch: "Open-source contribution to T3 Code, 27k stars.",
+    description:
+      "Found and fixed quadratic event-log growth in the ACP adapter: streamed tool updates made up 95% of 3.68M rows in a 17.8 GB SQLite database. Merged by the maintainer in #16682.",
+    stack: ["TypeScript", "Effect", "SQLite", "ACP"],
+    sourceUrl: "https://github.com/pingdotgg/t3code/pull/16682",
+    featured: false,
+  },
+  {
     slug: "vit-store",
     name: "vit-store",
     pitch: "The online store for my mom's supplement import business, live at amerikvitamin.mn.",

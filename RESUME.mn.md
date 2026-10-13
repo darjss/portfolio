@@ -31,7 +31,7 @@ Production систем бүтээж, нэвтрүүлсэн 2.5 жилийн т
 ### Голомт банк · Програм хангамжийн инженер, SocialPay backend баг
 **2024.05 – 2025.06**
 
-SocialPay нь Голомт банкны төлбөр, цахим хэтэвчний апп. Хичээлтэй үед цагийн, амралтаар бүтэн цагаар ажилласан. Java, Spring Boot, Oracle, ArgoCD.
+SocialPay нь Голомт банкны төлбөр, хэтэвчний апп. Хичээлтэй үед цагийн, амралтаар бүтэн цагаар. Java, Spring Boot, Oracle, ArgoCD.
 
 - Жижиг, дунд бизнес эрхлэгчдийн SME аппын backend-ийг эхний 4 сартаа ганцаараа бүрэн бичиж, Spring Boot-ийг ажил дээрээ сурсан: данс, гүйлгээ, POS гүйлгээний түүх, цаасны захиалга, засварын хүсэлт. UAT, production-д deploy хийж, DevOps багтай анхан шатны CI/CD тохируулсан. Банк олон нийтэд нээхийг хойшлуулсан.
 - SocialPay-ийн MostMoney QR төлбөрийн backend-ийг бүрэн хариуцсан: QPay-тай зэрэгцэх шинэ QR урсгал, дансны шилжүүлгээр тооцоо хийдэг.
@@ -41,10 +41,11 @@ SocialPay нь Голомт банкны төлбөр, цахим хэтэвчн
 
 ## Сонгосон төслүүд
 
-- **[Tranzfer](https://github.com/darjss/tranzfer-v2)**. Контент бүтээгч, эвлүүлэгчдэд зориулсан файл дамжуулах үйлчилгээ. Тасарсан дамжуулалтыг үргэлжлүүлдэг. Олон нийтэд нээхэд бэлтгэж байна. Solid 2, Effect, Alchemy, Cloudflare D1, R2. PR бүрийн preview орчин, CI-д e2e тест.
-- **[khaan-client](https://github.com/darjss/khaan-client)**. Хаан банкны баримтжуулаагүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах. Amerik Vitamin-ийн backend-д орж ирсэн шилжүүлгийг захиалгатай тулгадаг.
-- **[Herdr Orchestrate](https://github.com/darjss/herdr-orchestrate)**. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: төлөв хадгалах, тусгаарласан Git worktree, model routing.
-- **[DMS plugin-ууд](https://github.com/darjss/dms-bar-usage)**. Linux-ийн DankMaterialShell-д зориулсан plugin-ууд: Codex, Claude Code-ийн лимит харуулдаг Go сервистэй widget, Call Relay overlay, дэлгэц cast хийх удирдлага. QML, Go.
+- **[T3 Code](https://github.com/pingdotgg/t3code)**, 27k одтой open-source төсөлд оруулсан хувь нэмэр. ACP adapter-ийн event log квадрат хурдтай өсдөг алдааг олж зассан: 17.8 GB SQLite-ийн 3.68 сая мөрийн 95% нь stream хийгдсэн tool update байсан. Maintainer merge хийсэн ([#16682](https://github.com/pingdotgg/t3code/pull/16682)).
+- **[Tranzfer](https://github.com/darjss/tranzfer-v2)**. Контент бүтээгч, эвлүүлэгчдэд зориулсан файл дамжуулах үйлчилгээ. Тасарсан дамжуулалтыг үргэлжлүүлдэг. Solid 2, Effect, Alchemy, Cloudflare D1, R2. PR бүрийн preview орчин, CI-д e2e тест.
+- **[khaan-client](https://github.com/darjss/khaan-client)**. Хаан банкны баримтжуулаагүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах.
+- **[Herdr Orchestrate](https://github.com/darjss/herdr-orchestrate)**. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: тусгаарласан Git worktree, model routing.
+- **[DMS plugin-ууд](https://github.com/darjss/dms-bar-usage)**. Linux-ийн DankMaterialShell-д зориулсан plugin-ууд: Go сервистэй AI хэрэглээний widget, дуудлагын overlay, cast удирдлага.
 
 ## Ур чадвар
 

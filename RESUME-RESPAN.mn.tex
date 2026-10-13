@@ -14,11 +14,11 @@
 \usepackage{titlesec}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\linespread{0.95}
+\linespread{0.93}
 \setlength{\parskip}{0pt}
 \setlist[itemize]{leftmargin=1.35em,itemsep=0pt,topsep=0pt,parsep=0pt,partopsep=0pt}
 \titleformat{\section}{\normalsize\bfseries}{}{0pt}{}
-\titlespacing*{\section}{0pt}{4pt}{0pt}
+\titlespacing*{\section}{0pt}{3pt}{0pt}
 \newcommand{\cvsection}[1]{\section*{#1}\vspace{3pt}\hrule height 0.45pt\vspace{3pt}}
 \newcommand{\dated}[2]{#1\hfill#2\par}
 \newcommand{\project}[3]{\vspace{2pt}\href{#1}{\textcolor{linkblue}{\textbf{#2}}}\\[-1pt]#3\par}
@@ -26,7 +26,7 @@
 \begin{document}
 
 {\centering
-  {\fontsize{18}{19}\selectfont\textbf{Базаррагчаагийн Авиддарам}}\\[0pt]
+  {\fontsize{16}{17}\selectfont\textbf{Базаррагчаагийн Авиддарам}}\\[0pt]
   \textbf{Програм хангамжийн инженер · Full-stack ба AI агент}\\[1pt]
   Улаанбаатар · Remote эсвэл гадаадад ажиллах боломжтой · +976 9456 8799 · \href{mailto:hi@darjs.dev}{hi@darjs.dev} · \href{https://github.com/darjss}{github.com/darjss} · \href{https://darjs.dev}{darjs.dev}
 \par}
@@ -52,7 +52,7 @@ Production систем бүтээж, нэвтрүүлсэн 2.5 жилийн т
   \item Хэрэглэгчийн илгээсэн зургаар бүтээгдэхүүнийг таньж, чатаар захиалга авдаг Messenger AI борлуулалтын агент хийж байна.
 \end{itemize}
 \dated{\textbf{Голомт банк · Програм хангамжийн инженер, SocialPay backend баг}}{\textbf{2024.05 – 2025.06}}
-SocialPay нь Голомт банкны төлбөр, цахим хэтэвчний апп. Хичээлтэй үед цагийн, амралтаар бүтэн цагаар ажилласан. Java, Spring Boot, Oracle, ArgoCD.
+SocialPay нь Голомт банкны төлбөр, хэтэвчний апп. Хичээлтэй үед цагийн, амралтаар бүтэн цагаар. Java, Spring Boot, Oracle, ArgoCD.
 \begin{itemize}
   \item Жижиг, дунд бизнес эрхлэгчдийн SME аппын backend-ийг эхний 4 сартаа ганцаараа бүрэн бичиж, Spring Boot-ийг ажил дээрээ сурсан: данс, гүйлгээ, POS гүйлгээний түүх, цаасны захиалга, засварын хүсэлт. UAT, production-д deploy хийж, DevOps багтай анхан шатны CI/CD тохируулсан. Банк олон нийтэд нээхийг хойшлуулсан.
   \item SocialPay-ийн MostMoney QR төлбөрийн backend-ийг бүрэн хариуцсан: QPay-тай зэрэгцэх шинэ QR урсгал, дансны шилжүүлгээр тооцоо хийдэг.
@@ -63,10 +63,11 @@ SocialPay нь Голомт банкны төлбөр, цахим хэтэвчн
 
 \cvsection{Сонгосон төслүүд}
 \begin{itemize}
-  \item \href{https://github.com/darjss/tranzfer-v2}{\textcolor{linkblue}{\textbf{Tranzfer}}}. Контент бүтээгч, эвлүүлэгчдэд зориулсан файл дамжуулах үйлчилгээ. Тасарсан дамжуулалтыг үргэлжлүүлдэг. Олон нийтэд нээхэд бэлтгэж байна. Solid 2, Effect, Alchemy, Cloudflare D1, R2. PR бүрийн preview орчин, CI-д e2e тест.
-  \item \href{https://github.com/darjss/khaan-client}{\textcolor{linkblue}{\textbf{khaan-client}}}. Хаан банкны баримтжуулаагүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах. Amerik Vitamin-ийн backend-д орж ирсэн шилжүүлгийг захиалгатай тулгадаг.
-  \item \href{https://github.com/darjss/herdr-orchestrate}{\textcolor{linkblue}{\textbf{Herdr Orchestrate}}}. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: төлөв хадгалах, тусгаарласан Git worktree, model routing.
-  \item \href{https://github.com/darjss/dms-bar-usage}{\textcolor{linkblue}{\textbf{DMS plugin-ууд}}}. Linux-ийн DankMaterialShell-д зориулсан plugin-ууд: Codex, Claude Code-ийн лимит харуулдаг Go сервистэй widget, Call Relay overlay, дэлгэц cast хийх удирдлага. QML, Go.
+  \item \href{https://github.com/pingdotgg/t3code}{\textcolor{linkblue}{\textbf{T3 Code}}}, 27k одтой open-source төсөлд оруулсан хувь нэмэр. ACP adapter-ийн event log квадрат хурдтай өсдөг алдааг олж зассан: 17.8 GB SQLite-ийн 3.68 сая мөрийн 95\% нь stream хийгдсэн tool update байсан. Maintainer merge хийсэн (\href{https://github.com/pingdotgg/t3code/pull/16682}{\textcolor{linkblue}{\#16682}}).
+  \item \href{https://github.com/darjss/tranzfer-v2}{\textcolor{linkblue}{\textbf{Tranzfer}}}. Контент бүтээгч, эвлүүлэгчдэд зориулсан файл дамжуулах үйлчилгээ. Тасарсан дамжуулалтыг үргэлжлүүлдэг. Solid 2, Effect, Alchemy, Cloudflare D1, R2. PR бүрийн preview орчин, CI-д e2e тест.
+  \item \href{https://github.com/darjss/khaan-client}{\textcolor{linkblue}{\textbf{khaan-client}}}. Хаан банкны баримтжуулаагүй API-д зориулсан TypeScript SDK: OTP-оор төхөөрөмж бүртгэх, гүйлгээ татах, шилжүүлгийг автоматаар тулгах.
+  \item \href{https://github.com/darjss/herdr-orchestrate}{\textcolor{linkblue}{\textbf{Herdr Orchestrate}}}. Олон AI coding агентыг terminal session-д харагдахаар ажиллуулдаг хэрэгсэл: тусгаарласан Git worktree, model routing.
+  \item \href{https://github.com/darjss/dms-bar-usage}{\textcolor{linkblue}{\textbf{DMS plugin-ууд}}}. Linux-ийн DankMaterialShell-д зориулсан plugin-ууд: Go сервистэй AI хэрэглээний widget, дуудлагын overlay, cast удирдлага.
 \end{itemize}
 
 \cvsection{Ур чадвар}

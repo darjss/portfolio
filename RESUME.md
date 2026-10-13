@@ -41,10 +41,11 @@ SocialPay is Golomt's payments and wallet app. Part-time during semesters, full-
 
 ## Selected projects
 
-- **[Tranzfer](https://github.com/darjss/tranzfer-v2)**. Resumable file delivery for creators and editors, preparing for public launch. Solid 2, Effect, and Alchemy on Cloudflare D1 and R2, with staging, production, and per-PR preview environments, e2e tests in CI, and Axiom telemetry.
-- **[khaan-client](https://github.com/darjss/khaan-client)**. Typed TypeScript SDK for Khan Bank's undocumented API: OTP device login, transactions, and automatic transfer reconciliation. Matches incoming bank transfers to orders in the Amerik Vitamin backend.
-- **[Herdr Orchestrate](https://github.com/darjss/herdr-orchestrate)**. Runs multiple AI coding agents in visible terminal sessions with durable state, isolated Git worktrees, and model routing. 7 stars.
-- **[DMS plugins](https://github.com/darjss/dms-bar-usage)**. DankMaterialShell plugins for my Linux desktop: a Codex and Claude Code usage widget backed by a small Go service, the Call Relay call overlay, and a screen casting control. QML, Go, D-Bus.
+- **[T3 Code](https://github.com/pingdotgg/t3code)**, open-source contribution, 27k stars. Found and fixed quadratic event-log growth in the ACP adapter: streamed tool updates made up 95% of 3.68M rows in a 17.8 GB SQLite database. Merged by the maintainer ([#16682](https://github.com/pingdotgg/t3code/pull/16682)).
+- **[Tranzfer](https://github.com/darjss/tranzfer-v2)**. Resumable file delivery for creators and editors, preparing for public launch. Solid 2, Effect, and Alchemy on Cloudflare D1 and R2, with per-PR preview environments and e2e tests in CI.
+- **[khaan-client](https://github.com/darjss/khaan-client)**. Typed TypeScript SDK for Khan Bank's undocumented API: OTP device login, transactions, and automatic transfer reconciliation.
+- **[Herdr Orchestrate](https://github.com/darjss/herdr-orchestrate)**. Runs multiple AI coding agents in visible terminal sessions with durable state, isolated Git worktrees, and model routing.
+- **[DMS plugins](https://github.com/darjss/dms-bar-usage)**. DankMaterialShell plugins for my Linux desktop: an AI usage widget with a Go service, a call overlay, and a casting control. QML, Go.
 
 ## Skills
 
