@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:ital,wght@0,300..700;1,300..700&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@300..700&display=block");
+
+.pj-theatre {
+  position: relative;
+  background: #000;
+}
+
+.pj-layer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.pj-output {
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pj-reel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transform-origin: 0 0;
+  color: #f2efe8;
+  background: #000;
+}
+
+.pj-reel a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.pj-reel a:hover,
+.pj-reel a:focus-visible {
+  text-decoration-thickness: 3px;
+  outline: none;
+}
+
+.pj-fill {
+  position: absolute;
+  inset: 0;
+}
+
+.pj-booth {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 28px 18px;
+  font-family: "Courier Prime", ui-monospace, monospace;
+  font-size: 13px;
+  color: oklch(0.8 0.07 75);
+  background: linear-gradient(to top, oklch(0.08 0.01 60 / 0.92), transparent);
+}
+
+.pj-booth nav {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.pj-booth button,
+.pj-booth a {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.62;
+  transition: opacity 160ms ease, border-color 160ms ease, transform 120ms ease-out;
+}
+
+.pj-booth button:hover,
+.pj-booth a:hover,
+.pj-booth button:focus-visible,
+.pj-booth a:focus-visible {
+  opacity: 1;
+  outline: none;
+  border-color: oklch(0.8 0.07 75 / 0.45);
+}
+
+.pj-booth button:active {
+  transform: scale(0.97);
+}
+
+.pj-booth [aria-current="true"] {
+  opacity: 1;
+  border-color: oklch(0.8 0.07 75 / 0.6);
+}
+
+.pj-counter {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.pj-booth .pj-sound[aria-pressed="true"] {
+  opacity: 1;
+  color: oklch(0.86 0.12 75);
+}
+
+.pj-script {
+  min-height: 100%;
+  background: oklch(0.97 0 0);
+  color: oklch(0.18 0 0);
+  font-family: "Courier Prime", ui-monospace, monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 72px 20px 120px;
+}
+
+.pj-script article {
+  max-width: 61ch;
+  margin: 0 auto;
+}
+
+.pj-script a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+.pj-script .slug {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 2.4em 0 1em;
+}
+
+.pj-script .character {
+  margin: 1.4em 0 0;
+  padding-left: 22ch;
+  text-transform: uppercase;
+}
+
+.pj-script .paren {
+  padding-left: 16ch;
+}
+
+.pj-script .dialogue {
+  padding: 0 10ch 0 10ch;
+}
+
+.pj-script .transition {
+  text-align: right;
+  text-transform: uppercase;
+  margin: 2em 0;
+}
+
+.pj-script .action {
+  margin: 1em 0;
+  text-wrap: pretty;
+}
+
+.pj-script .center {
+  text-align: center;
+}
+
+.pj-script .title-page {
+  min-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 1px dashed oklch(0.7 0 0);
+  margin-bottom: 3em;
+  position: relative;
+}
+
+.pj-script .title-page h1 {
+  font-size: 1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin: 0 0 2em;
+}
+
+.pj-script .contact {
+  position: absolute;
+  left: 0;
+  bottom: 2em;
+  text-align: left;
+}
+
+@media (max-width: 560px) {
+  .pj-script .character {
+    padding-left: 10ch;
+  }
+
+  .pj-script .paren {
+    padding-left: 6ch;
+  }
+
+  .pj-script .dialogue {
+    padding: 0 2ch;
+  }
+}
