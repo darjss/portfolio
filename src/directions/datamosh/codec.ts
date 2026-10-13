@@ -356,8 +356,8 @@ export function createCodec(opts: {
     pointer.px = pointer.x
     pointer.py = pointer.y
 
-    const energy = Math.abs(dy) + Math.hypot(pvx, pvy) * 0.6
-    activity += ((energy > 0.5 ? 1 : 0) - activity) * (energy > 0.5 ? 0.35 : 0.08)
+    const energy = (Math.abs(dy) + Math.hypot(pvx, pvy) * 0.6) / Math.max(dt * 60, 0.25)
+    activity += ((energy > 0.5 ? 1 : 0) - activity) * (1 - Math.pow(energy > 0.5 ? 0.65 : 0.92, dt * 60))
 
     const warm = (now - warmStart) / 2600
 
@@ -366,7 +366,7 @@ export function createCodec(opts: {
       idleFor = energy > 0.5 ? 0 : idleFor + dt
       const anyStale = stale.includes(1)
       if (anyStale && idleFor > 0.45) keyPending = true
-      const gopHit = audio.bar >= 0 ? audio.bar !== lastBar && lastBar >= 0 : sinceKey > 90
+      const gopHit = audio.bar >= 0 ? audio.bar !== lastBar && lastBar >= 0 : sinceKey > 3
       if (anyStale && energy > 0.5 && gopHit) keyPending = true
     }
     lastBar = audio.bar
@@ -378,7 +378,7 @@ export function createCodec(opts: {
       key = 1
       sinceKey = 0
       seed = Math.floor(Math.random() * 1000)
-    } else sinceKey++
+    } else sinceKey += dt
 
     const damp = Math.pow(0.87, dt * 60)
     const radius = 150
@@ -423,7 +423,7 @@ export function createCodec(opts: {
           }
           if (m < 0.05) vx = vy = 0
           if (m > 0.6) stale[i] = 1
-          if (stale[i]) refresh = Math.random() < 0.02 ? 2 : 0.06
+          if (stale[i]) refresh = Math.random() < 0.02 * dt * 60 ? 2 : 1 - Math.pow(0.94, dt * 60)
         }
 
         const m = Math.hypot(vx, vy)
@@ -511,7 +511,7 @@ export function createCodec(opts: {
 
     onStats({
       type: key > 0.5 ? "I" : "P",
-      gop: sinceKey,
+      gop: Math.round(sinceKey * 30),
       stale: stats.stale,
       motion: stats.motion,
       decoded,

@@ -755,3 +755,59 @@
 .dm-stream-items {
   font-family: var(--display);
 }
+
+.dm-player {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.dm-play {
+  width: 36px;
+  justify-content: center;
+  padding: 0;
+}
+
+.dm-skip {
+  height: 32px;
+  width: 32px;
+  border: 1px solid #221f30;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dm-skip:active {
+  transform: scale(0.94);
+}
+
+.dm-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 240px;
+  margin-left: 8px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.dm-track img {
+  flex: none;
+}
+
+.dm-track > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.dm-track strong,
+.dm-track .dm-quiet {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

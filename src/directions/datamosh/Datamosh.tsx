@@ -1,10 +1,13 @@
-import { createSignal, For, onCleanup, onMount, Show, type JSX } from "solid-js"
+import { createEffect, createSignal, For, onCleanup, onMount, Show, untrack, type JSX } from "solid-js"
 import { experience, education } from "../../data/experience"
 import { profile } from "../../data/profile"
 import { projects } from "../../data/projects"
 import { socials } from "../../data/socials"
 import { supportsHtmlInCanvas } from "../../lab/html-in-canvas"
 import { createCodec, type CodecStats } from "./codec"
+import SoundGate from "../../lab/SoundGate"
+import { sound as soundChoice } from "../../lab/sound"
+import { createMusic, loadTracks, type Music, type Track } from "./music"
 import { createSynth, type Synth } from "./synth"
 import "./datamosh.css"
 
@@ -238,9 +241,14 @@ function Player(props: { onFail: () => void }) {
   const [height, setHeight] = createSignal(1)
   const [view, setView] = createSignal(1)
   const [stats, setStats] = createSignal<CodecStats>({ type: "P", gop: 0, stale: 0, motion: 0, decoded: false })
-  const [started, setStarted] = createSignal(false)
   const [sound, setSound] = createSignal(false)
+  const [tracks, setTracks] = createSignal<Track[]>([])
+  const [track, setTrack] = createSignal(0)
   let synth: Synth | null = null
+  let music: Music | null = null
+  const tracksReady = loadTracks()
+    .then((list) => (setTracks(list), list))
+    .catch(() => [])
 
   const remeasure = () => {
     setOffsets(measure(film))
@@ -250,24 +258,48 @@ function Player(props: { onFail: () => void }) {
     setScroll(scroller.scrollTop)
   }
 
-  const startSound = () => {
-    if (synth) return
-    synth = createSynth()
+  const ensureMusic = () => {
+    const list = tracks()
+    if (!music && list.length) music = createMusic(list, setTrack)
+    return music
+  }
+
+  const startSound = async () => {
+    const m = ensureMusic()
+    if (m) {
+      await m.play(m.index).catch(() => {})
+      return setSound(m.playing)
+    }
+    if (!synth) synth = createSynth()
     setSound(true)
   }
 
   const toggleSound = async () => {
-    if (!synth) return startSound()
-    await synth.toggle()
-    setSound(synth.playing)
+    const m = ensureMusic()
+    if (m) await m.toggle()
+    else if (synth) await synth.toggle()
+    else return startSound()
+    setSound(m ? m.playing : (synth?.playing ?? false))
   }
+
+  const skip = async (dir: 1 | -1) => {
+    const m = ensureMusic()
+    if (!m) return
+    await (dir > 0 ? m.next() : m.prev()).catch(() => {})
+    setSound(m.playing)
+  }
+
+  createEffect(() => {
+    if (soundChoice() !== true) return
+    untrack(() => void tracksReady.then(() => startSound()))
+  })
 
   onMount(() => {
     const codec = createCodec({
       source,
       content: scroller,
       output,
-      pulse: () => synth?.sample() ?? { pump: 0, snare: 0, level: 0, bar: -1 },
+      pulse: () => music?.sample() ?? synth?.sample() ?? { pump: 0, snare: 0, level: 0, bar: -1 },
       onStats: (s) =>
         setStats((prev) =>
           prev.type === s.type && prev.gop === s.gop && Math.abs(prev.stale - s.stale) < 0.01 && prev.decoded === s.decoded ? prev : s,
@@ -279,13 +311,7 @@ function Player(props: { onFail: () => void }) {
     const onDown = (e: PointerEvent) => {
       if (!inHud(e)) codec.keyframe()
     }
-    const onClick = (e: MouseEvent) => {
-      if (inHud(e) || started()) return
-      setStarted(true)
-      startSound()
-    }
     window.addEventListener("pointerdown", onDown)
-    window.addEventListener("click", onClick)
     const onScroll = () => setScroll(scroller.scrollTop)
     scroller.addEventListener("scroll", onScroll, { passive: true })
     const resize = new ResizeObserver(remeasure)
@@ -297,9 +323,9 @@ function Player(props: { onFail: () => void }) {
     onCleanup(() => {
       codec.destroy()
       synth?.destroy()
+      music?.destroy()
       resize.disconnect()
       window.removeEventListener("pointerdown", onDown)
-      window.removeEventListener("click", onClick)
       scroller.removeEventListener("scroll", onScroll)
     })
   })
@@ -338,9 +364,32 @@ function Player(props: { onFail: () => void }) {
           </span>
         </div>
         <div class="dm-bottom" data-hud>
-          <button class="dm-play" data-on={sound()} onClick={() => void toggleSound()}>
-            {sound() ? "■ mute" : "▶ sound"}
-          </button>
+          <div class="dm-player">
+            <Show when={tracks().length}>
+              <button class="dm-skip" aria-label="previous track" onClick={() => void skip(-1)}>
+                ⏮
+              </button>
+            </Show>
+            <button class="dm-play" data-on={sound()} aria-label={sound() ? "pause" : "play"} onClick={() => void toggleSound()}>
+              {sound() ? "❚❚" : "▶"}
+            </button>
+            <Show when={tracks().length}>
+              <button class="dm-skip" aria-label="next track" onClick={() => void skip(1)}>
+                ⏭
+              </button>
+            </Show>
+            <Show when={tracks()[track()]}>
+              {(t) => (
+                <a class="dm-track dm-hide-sm" href={t().url} target="_blank" rel="noreferrer" title="preview via apple music">
+                  <img src={t().art} alt="" width="28" height="28" />
+                  <span>
+                    <strong>{t().title}</strong>
+                    <span class="dm-quiet">{t().artist}</span>
+                  </span>
+                </a>
+              )}
+            </Show>
+          </div>
           <span class="dm-num">
             {timecode(scroll())}
             <span class="dm-quiet dm-hide-sm"> / {timecode(total())}</span>
@@ -364,9 +413,6 @@ function Player(props: { onFail: () => void }) {
             <span class="dm-playhead" style={{ left: share(scroll() + (view() * scroll()) / total()) }} />
           </div>
         </div>
-        <Show when={!started()}>
-          <div class="dm-intro">missing keyframe. click anywhere to decode, sound on</div>
-        </Show>
       </div>
     </div>
   )
@@ -395,6 +441,7 @@ export default function Datamosh() {
   return (
     <Show when={!raw()} fallback={<Raw />}>
       <Player onFail={() => setRaw(true)} />
+      <SoundGate title="watch a concert" />
     </Show>
   )
 }
