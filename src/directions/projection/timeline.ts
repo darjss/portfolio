@@ -1,6 +1,6 @@
 export const reels = [
   { id: "opening", label: "titles", aspect: 1.85, length: 2.4 },
-  { id: "golomt", label: "reel 1", aspect: 1.37, length: 4.2 },
+  { id: "golomt", label: "reel 1", aspect: 1.37, length: 5.4 },
   { id: "erxes", label: "reel 2", aspect: 1.85, length: 6.4 },
   { id: "amerik", label: "reel 3", aspect: 1.66, length: 3.2 },
   { id: "projects", label: "reel 4", aspect: 2.39, length: 7.5 },

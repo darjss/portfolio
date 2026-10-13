@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+.home {
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #050505;
+  color: #ede9e1;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.home-top,
+.home-bottom {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 24px;
+}
+
+.home-bottom {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-name {
+  font-weight: 500;
+  color: #fff;
+}
+
+.home-role,
+.home-quiet {
+  color: #8a857c;
+}
+
+.home-quiet a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.home-quiet a:hover {
+  color: #ede9e1;
+}
+
+.home-notice {
+  margin: 0 24px 16px;
+  padding: 16px 18px;
+  border: 1px solid #3a352c;
+  border-radius: 12px;
+  background: #11100d;
+  line-height: 1.6;
+  max-width: 68ch;
+}
+
+.home-notice p {
+  margin: 0;
+}
+
+.home-notice-title {
+  color: #fff;
+  margin-bottom: 6px !important;
+}
+
+.home-notice-quiet {
+  color: #8a857c;
+  margin-top: 10px !important;
+}
+
+.home-flag {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid #3a352c;
+  border-radius: 8px;
+  background: #050505;
+  color: #ede9e1;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 160ms var(--ease);
+}
+
+.home-flag:active {
+  transform: scale(0.97);
+}
+
+.home-flag span {
+  color: #8a857c;
+}
+
+.home-doors {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  padding: 0 8px;
+  min-height: 0;
+}
+
+.door {
+  position: relative;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: clamp(20px, 4vw, 48px);
+  border-radius: 14px;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  isolation: isolate;
+  transition: flex-grow 600ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-doors:has(.door:hover) .door:not(:hover) {
+    flex-grow: 0.7;
+  }
+}
+
+.door:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.door-kicker {
+  color: #8a857c;
+}
+
+.door-title {
+  line-height: 0.9;
+}
+
+.door-sub {
+  max-width: 34ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #b7b1a6;
+}
+
+.door-movie {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, oklch(0.42 0.13 30 / 0.55), transparent 70%),
+    radial-gradient(ellipse 120% 80% at 50% 120%, oklch(0.2 0.05 50), transparent 70%),
+    #0b0806;
+}
+
+.door-movie .door-title {
+  font-family: "Bodoni Moda", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(48px, 7vw, 112px);
+  color: oklch(0.93 0.04 80);
+}
+
+.door-beam {
+  position: absolute;
+  inset: -20% -10% 30% 40%;
+  z-index: -1;
+  background: conic-gradient(from 205deg at 100% 0%, transparent 0deg, oklch(0.9 0.06 80 / 0.16) 12deg, transparent 26deg);
+  filter: blur(8px);
+  animation: beam 7s ease-in-out infinite alternate;
+}
+
+@keyframes beam {
+  to {
+    transform: translateX(-4%) rotate(-2deg);
+    opacity: 0.7;
+  }
+}
+
+.door-concert {
+  background: #030303;
+}
+
+.door-concert .door-title {
+  font-family: "Anybody", system-ui, sans-serif;
+  font-weight: 900;
+  font-stretch: 125%;
+  font-size: clamp(36px, 5vw, 84px);
+  color: oklch(0.92 0.24 128);
+  text-shadow:
+    -3px 0 oklch(0.65 0.3 350 / 0.85),
+    3px 0 oklch(0.6 0.25 260 / 0.85);
+}
+
+.door-blocks {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, transparent 0 31%, oklch(0.65 0.3 350 / 0.5) 31% 44%, transparent 44% 62%, oklch(0.6 0.25 260 / 0.45) 62% 70%, transparent 70%) 0 22% / 100% 16px no-repeat,
+    linear-gradient(90deg, transparent 0 12%, oklch(0.92 0.24 128 / 0.35) 12% 30%, transparent 30% 76%, oklch(0.65 0.3 350 / 0.4) 76% 92%, transparent 92%) 0 38% / 100% 32px no-repeat,
+    linear-gradient(90deg, transparent 0 50%, oklch(0.6 0.25 260 / 0.4) 50% 81%, transparent 81%) 0 46% / 100% 16px no-repeat,
+    repeating-linear-gradient(90deg, #ffffff08 0 1px, transparent 1px 16px),
+    repeating-linear-gradient(0deg, #ffffff08 0 1px, transparent 1px 16px);
+  animation: mosh 2.4s steps(6) infinite;
+}
+
+@keyframes mosh {
+  50% {
+    background-position: 16px 22%, -32px 38%, 48px 46%, 0 0, 0 0;
+  }
+}
+
+.home-sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #2a2722;
+  border-radius: 999px;
+}
+
+.home-sound-label {
+  padding: 0 8px 0 10px;
+  color: #8a857c;
+}
+
+.home-sound button {
+  min-width: 48px;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #8a857c;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--ease),
+    color 200ms var(--ease);
+}
+
+.home-sound button[aria-checked="true"] {
+  background: #ede9e1;
+  color: #050505;
+}
+
+@media (max-width: 760px) {
+  .home-doors {
+    flex-direction: column;
+  }
+
+  .home-role {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .door-beam,
+  .door-blocks {
+    animation: none;
+  }
+}

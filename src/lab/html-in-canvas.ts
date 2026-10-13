@@ -2,7 +2,8 @@ export type PaintableCanvas = HTMLCanvasElement & {
   onpaint: ((event: Event & { changedElements?: Element[] }) => void) | null
   requestPaint: () => void
   captureElementImage: (element: Element) => { width: number; height: number }
-  updateElementGeometry: (element: Element) => void
+  updateElementGeometry?: (element: Element) => void
+  clearElementGeometry?: (element: Element) => void
 }
 
 export type ElementImageContext = CanvasRenderingContext2D & {

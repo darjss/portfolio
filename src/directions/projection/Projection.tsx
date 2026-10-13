@@ -1,8 +1,10 @@
 import "./projection.css"
-import { For, Show, createSignal, onCleanup, onMount } from "solid-js"
+import { For, Show, createEffect, createSignal, onCleanup, onMount, untrack } from "solid-js"
 import { experience } from "../../data/experience"
 import { profile } from "../../data/profile"
 import { supportsHtmlInCanvas, type ElementImageContext, type PaintableCanvas } from "../../lab/html-in-canvas"
+import SoundGate from "../../lab/SoundGate"
+import { sound as soundChoice } from "../../lab/sound"
 import { createProjectorSound, type ProjectorSound } from "./projector-sound"
 import { Amerik, Credits, Erxes, Golomt, Opening, Projects, Strobe, erxesCamera, strobeWord } from "./reels"
 import { createRenderer, type FilmFrame } from "./renderer"
@@ -22,15 +24,17 @@ export default function Projection() {
   return (
     <Show when={!script()} fallback={<Screenplay />}>
       <Theatre onFail={() => setScript(true)} />
+      <SoundGate title="watch a movie" />
     </Show>
   )
 }
 
-type Canvas = PaintableCanvas & { clearElementGeometry: (element: Element) => void }
+type Canvas = PaintableCanvas
 type Rect = { x: number; y: number; w: number; h: number }
 
 const DIGIT = 0.45
 const COUNTDOWN = DIGIT * 6 + 0.9
+const SECONDS_PER_UNIT = 8
 const kinds = { splice: 0, burn: 1, runout: 2 } as const
 const tints: Record<ReelId, [number, number, number]> = {
   opening: [1, 0.99, 0.96],
@@ -126,9 +130,11 @@ function Theatre(props: { onFail: () => void }) {
   const [counter, setCounter] = createSignal("0000 ft 00 fr")
   const [aspectLabel, setAspectLabel] = createSignal("1.85")
   const [sound, setSound] = createSignal<ProjectorSound | null>(null)
+  const [playing, setPlaying] = createSignal(false)
+  const [progress, setProgress] = createSignal(0)
 
   const u = (i: number) => () => us()[i]
-  const live = { time: 0, countdownStart: 0, countdown: !reduced && window.scrollY < 4, kick: 0 }
+  const live = { time: 0, countdownStart: 0, countdown: false, kick: 0, head: 0 }
 
   const toggleSound = () => {
     const current = sound()
@@ -139,16 +145,32 @@ function Theatre(props: { onFail: () => void }) {
     }
     setSound(createProjectorSound())
     live.kick = 1
-    if (window.scrollY < 4 && !reduced) {
+  }
+
+  const roll = () => {
+    if (live.head >= totalLength) live.head = 0
+    if (live.head < 0.01 && !reduced) {
       live.countdown = true
       live.countdownStart = live.time
     }
+    setPlaying(true)
   }
 
+  const togglePlay = () => (playing() ? setPlaying(false) : roll())
+
   const jump = (i: number) => {
-    const top = (reelStart(i) + (i > 0 ? TRANSITION_HALF + 0.04 : 0)) * window.innerHeight
-    window.scrollTo({ top, behavior: reduced ? "auto" : "smooth" })
+    live.countdown = false
+    live.head = reelStart(i) + (i > 0 ? TRANSITION_HALF + 0.04 : 0)
   }
+
+  createEffect(() => {
+    const choice = soundChoice()
+    if (choice === null) return
+    untrack(() => {
+      if (choice && !sound()) toggleSound()
+      roll()
+    })
+  })
 
   onMount(() => {
     const renderer = createRenderer(output, source)
@@ -159,16 +181,31 @@ function Theatre(props: { onFail: () => void }) {
     }
     const canvas = source as Canvas
     const root = document.documentElement
-    root.style.scrollbarWidth = "none"
     root.style.background = "#000"
 
-    let s = window.scrollY / window.innerHeight
+    const onWheel = (e: WheelEvent) => {
+      if (e.target instanceof Element && e.target.closest(".pj-booth")) return
+      live.countdown = false
+      live.head = Math.min(Math.max(live.head + e.deltaY / window.innerHeight, 0), totalLength)
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLButtonElement || e.target instanceof HTMLAnchorElement) return
+      if (e.key === " ") {
+        e.preventDefault()
+        togglePlay()
+      } else if (e.key === "ArrowRight") jump(Math.min(locate(live.head).index + 1, reels.length - 1))
+      else if (e.key === "ArrowLeft") jump(Math.max(locate(live.head).index - (locate(live.head).local < 0.1 ? 1 : 0), 0))
+    }
+    window.addEventListener("wheel", onWheel, { passive: true })
+    window.addEventListener("keydown", onKey)
+
+    let s = 0
     const start = performance.now()
     let last = start
     let velocity = 0
     let spinX = 0
     let spinV = 0
-    let frameCount = 0
+    let lastStep = -1
     let kickRoll = 0
     let lastSide = 0
     let lastDigit = -1
@@ -180,15 +217,22 @@ function Theatre(props: { onFail: () => void }) {
       const dt = Math.min((now - last) / 1000, 0.1)
       last = now
       live.time = (now - start) / 1000
-      const target = window.scrollY / window.innerHeight
       const countdownTime = live.time - live.countdownStart
-      if (live.countdown && (target > 0.01 || countdownTime > COUNTDOWN)) live.countdown = false
+      if (live.countdown && countdownTime > COUNTDOWN) live.countdown = false
+      if (playing() && !live.countdown) {
+        const here = locate(live.head)
+        const surge = reels[here.index].id === "amerik" && !reduced ? 0.35 + 1.9 * Math.max(0, Math.sin(live.time * 0.9)) ** 6 : 1
+        live.head = Math.min(live.head + (dt / SECONDS_PER_UNIT) * surge, totalLength)
+        if (live.head >= totalLength) setPlaying(false)
+      }
+      const target = live.head
+      setProgress(live.head / totalLength)
       if (live.countdown) {
         const digit = 8 - Math.floor(countdownTime / DIGIT)
         if (digit === 2 && lastDigit !== 2) sound()?.beep()
         lastDigit = digit
       }
-      const rate = reduced ? 40 : loc.index === 1 && !loc.change ? 1.4 : 6
+      const rate = reduced ? 40 : 6
       const prev = s
       s += (target - s) * (1 - Math.exp(-dt * rate))
       const v = (s - prev) / Math.max(dt, 1e-3)
@@ -205,13 +249,12 @@ function Theatre(props: { onFail: () => void }) {
       setWord(strobeWord(erxesCamera(values[2]).next))
       setInvert(Math.floor(live.time * 12) % 2 === 1)
       setActive(loc.index)
-      const frames = Math.floor((s * window.innerHeight) / 6)
+      const frames = Math.floor(s * SECONDS_PER_UNIT * 24)
       setCounter(`${String(Math.floor(frames / 16)).padStart(4, "0")} ft ${String(frames % 16).padStart(2, "0")} fr`)
       sound()?.setSpeed(Math.abs(velocity))
       const side = loc.change ? Math.sign(loc.change.t) : 0
       if (side > 0 && lastSide < 0) sound()?.thump()
       lastSide = side
-      frameCount++
       canvas.requestPaint()
       raf = requestAnimationFrame(tick)
     }
@@ -257,9 +300,9 @@ function Theatre(props: { onFail: () => void }) {
         } catch {}
         ctx.setTransform(1, 0, 0, 1, 0, 0)
         drawn.style.transform = `matrix(${sc}, 0, 0, ${sc}, ${x}, ${y})`
-        canvas.updateElementGeometry(drawn)
+        canvas.updateElementGeometry?.(drawn)
       }
-      if (lastDrawn && lastDrawn !== drawn) canvas.clearElementGeometry(lastDrawn)
+      if (lastDrawn && lastDrawn !== drawn) canvas.clearElementGeometry?.(lastDrawn)
       lastDrawn = drawn
 
       const id = reels[shown].id
@@ -292,7 +335,9 @@ function Theatre(props: { onFail: () => void }) {
       let streak: [number, number] = [0, 0]
       const speed = Math.abs(velocity)
       if (id === "amerik" && !leader && !reduced && speed > 0.08) {
-        refresh = frameCount % 3 === 0
+        const step = Math.floor(live.time * 8)
+        refresh = step !== lastStep
+        lastStep = step
         smear = Math.min(0.78, 0.35 + speed * 0.6)
         streak = [Math.max(-90, Math.min(90, velocity * 110)), 0]
       }
@@ -326,10 +371,11 @@ function Theatre(props: { onFail: () => void }) {
     raf = requestAnimationFrame(tick)
     onCleanup(() => {
       cancelAnimationFrame(raf)
+      window.removeEventListener("wheel", onWheel)
+      window.removeEventListener("keydown", onKey)
       canvas.onpaint = null
       renderer.destroy()
       sound()?.stop()
-      root.style.scrollbarWidth = ""
       root.style.background = ""
     })
   })
@@ -346,8 +392,13 @@ function Theatre(props: { onFail: () => void }) {
         <Strobe ref={(el) => (strobeEl = el)} word={word} invert={invert} />
       </canvas>
       <canvas ref={output} class="pj-layer pj-output" aria-hidden="true" />
-      <div style={{ height: `${(totalLength + 1) * 100}vh` }} />
       <footer class="pj-booth">
+        <button type="button" class="pj-play" aria-label={playing() ? "pause" : "play"} onClick={togglePlay}>
+          {playing() ? "❚❚" : "▶"}
+        </button>
+        <span class="pj-progress" aria-hidden="true">
+          <span style={{ transform: `scaleX(${progress()})` }} />
+        </span>
         <nav aria-label="reels">
           <For each={reels}>
             {(_, i) => (

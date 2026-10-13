@@ -8,11 +8,8 @@ render(
   () => (
     <Router>
       <Route path="/" component={Index} />
-      <Route path="/spectrogram" component={lazy(() => import("./directions/spectrogram/Spectrogram"))} />
-      <Route path="/datamosh" component={lazy(() => import("./directions/datamosh/Datamosh"))} />
-      <Route path="/projection" component={lazy(() => import("./directions/projection/Projection"))} />
-      <Route path="/tiling" component={lazy(() => import("./directions/tiling/Tiling"))} />
-      <Route path="/galley" component={lazy(() => import("./directions/galley/Galley"))} />
+      <Route path="/movie" component={lazy(() => import("./directions/projection/Projection"))} />
+      <Route path="/concert" component={lazy(() => import("./directions/datamosh/Datamosh"))} />
     </Router>
   ),
   document.getElementById("root")!,

@@ -190,8 +190,8 @@ export function createCodec(opts: {
   onStats: (stats: CodecStats) => void
 }) {
   const { content, output, pulse, onStats } = opts
-  const source = opts.source as PaintableCanvas & {
-    updateElementGeometry: (element: Element, options: { canvasTransform: DOMMatrix }) => void
+  const source = opts.source as Omit<PaintableCanvas, "updateElementGeometry"> & {
+    updateElementGeometry?: (element: Element, options: { canvasTransform: DOMMatrix }) => void
   }
   const sourceCtx = source.getContext("2d") as ElementImageContext | null
   const gl = output.getContext("webgl2", { alpha: false, antialias: false, depth: false, stencil: false })
@@ -325,7 +325,8 @@ export function createCodec(opts: {
   source.onpaint = () => {
     sourceCtx.reset()
     try {
-      source.updateElementGeometry(content, { canvasTransform: sourceCtx.drawElementImage(content, 0, 0) })
+      const canvasTransform = sourceCtx.drawElementImage(content, 0, 0)
+      source.updateElementGeometry?.(content, { canvasTransform })
     } catch {
       return
     }

@@ -59,7 +59,7 @@ export function Opening(props: ReelProps) {
           {profile.name}
         </h1>
         <p style={{ "font-size": "22px", "font-variant": "small-caps", "letter-spacing": "0.12em", margin: 0, opacity: 0.86 }}>{profile.fullName}</p>
-        <p style={{ position: "absolute", bottom: "54px", "font-size": "17px", "font-style": "italic", opacity: 0.6, margin: 0 }}>scroll to advance the reel</p>
+        <p style={{ position: "absolute", bottom: "54px", "font-size": "17px", "font-style": "italic", opacity: 0.6, margin: 0 }}>space to pause · scroll to scrub</p>
       </div>
       <div style={style(b)}>
         <p style={{ "font-size": "20px", "font-style": "italic", margin: 0, opacity: 0.75 }}>{profile.role}</p>
@@ -78,69 +78,78 @@ export function Opening(props: ReelProps) {
 
 export function Golomt(props: ReelProps) {
   const golomt = job("Golomt Bank")
-  const n = golomt.highlights.length
-  const slot = 0.9 / n
-  const header = () => smoothstep(0, 0.09, props.u())
-  const shown = (i: number) => () => window01(props.u(), 0.1 + i * slot, i === n - 1 ? 2 : 0.1 + (i + 1) * slot, slot * 0.4, slot * 0.18)
-  const light = () => props.u()
-  const ink = "oklch(0.94 0.02 85)"
+  const W = widthOf("golomt")
+  const SLOT = H - 132
+  let paper: HTMLDivElement | undefined
+  const fed = () => Math.floor((smoothstep(0.03, 0.97, props.u()) * ((paper?.offsetHeight ?? 900) + 24)) / 3) * 3
+  const ink = "oklch(0.24 0.01 260)"
+  const yellow = "oklch(0.86 0.17 95)"
+  const rule = <div style={{ "border-top": `2px dashed ${ink}`, opacity: 0.55, margin: "14px 0" }} />
   return (
-    <Frame id="golomt" ref={props.ref} style={{ "font-family": "'Libre Franklin', system-ui, sans-serif", color: ink }}>
+    <Frame
+      id="golomt"
+      ref={props.ref}
+      style={{
+        "font-family": "'Courier Prime', ui-monospace, monospace",
+        background: "radial-gradient(ellipse 80% 70% at 50% 38%, oklch(0.47 0.14 256) 0%, oklch(0.33 0.12 258) 55%, oklch(0.2 0.08 260) 100%)",
+      }}
+    >
+      <div class="pj-fill" style={{ background: "repeating-linear-gradient(90deg, oklch(1 0 0 / 0.025) 0 1px, transparent 1px 82px)" }} />
+      <p style={{ position: "absolute", left: "40px", top: `${SLOT - 300}px`, width: "200px", margin: 0, "text-align": "right", color: yellow, "font-size": "15px", "line-height": 1.5 }}>
+        {golomt.period}
+      </p>
+      <p style={{ position: "absolute", right: "40px", top: `${SLOT - 300}px`, width: "200px", margin: 0, color: yellow, "font-size": "15px", "line-height": 1.5 }}>
+        {golomt.role}
+      </p>
       <div
-        class="pj-fill"
+        ref={paper}
         style={{
-          background: `radial-gradient(ellipse at 50% ${30 + light() * 30}%, oklch(0.62 0.035 165) 0%, oklch(0.44 0.03 170) 55%, oklch(0.27 0.02 170) 100%)`,
+          position: "absolute",
+          left: `${W / 2 - 180}px`,
+          top: `${SLOT - fed()}px`,
+          width: "360px",
+          padding: "26px 26px 30px",
+          "box-sizing": "border-box",
+          background: "linear-gradient(90deg, oklch(0.9 0.012 85), oklch(0.96 0.01 85) 12%, oklch(0.97 0.008 85) 88%, oklch(0.9 0.012 85))",
+          color: ink,
+          "font-size": "14px",
+          "line-height": 1.45,
+          "box-shadow": "0 18px 40px oklch(0.1 0.05 260 / 0.45)",
         }}
-      />
-      <div
-        class="pj-fill"
-        style={{
-          "background-image": "linear-gradient(oklch(0.22 0.02 170 / 0.55) 2px, transparent 2px), linear-gradient(90deg, oklch(0.22 0.02 170 / 0.55) 2px, transparent 2px)",
-          "background-size": "62px 62px",
-          "background-position": "center 18px",
-        }}
-      />
+      >
+        <img src="/logos/golomt.png" alt="Golomt Bank" style={{ display: "block", width: "230px", margin: "0 auto 14px" }} />
+        <p style={{ margin: 0, "text-align": "center", "text-transform": "uppercase", "letter-spacing": "0.06em" }}>{golomt.role}</p>
+        <p style={{ margin: "4px 0 0", "text-align": "center" }}>{golomt.period}</p>
+        {rule}
+        <p style={{ margin: 0 }}>{golomt.context}</p>
+        {rule}
+        <For each={golomt.highlights}>
+          {(text, i) => (
+            <div style={{ display: "grid", "grid-template-columns": "30px 1fr", margin: "0 0 12px" }}>
+              <span style={{ "font-weight": 700 }}>{String(i() + 1).padStart(2, "0")}</span>
+              <span>{text}</span>
+            </div>
+          )}
+        </For>
+        {rule}
+        <div style={{ height: "46px", margin: "6px 18px 8px", background: `repeating-linear-gradient(90deg, ${ink} 0 2px, transparent 2px 4px, ${ink} 4px 7px, transparent 7px 9px, ${ink} 9px 10px, transparent 10px 13px)` }} />
+        <p style={{ margin: 0, "text-align": "center", "letter-spacing": "0.3em" }}>* * *</p>
+      </div>
       <div
         style={{
           position: "absolute",
-          left: "50%",
-          top: "64px",
-          width: "456px",
-          height: "560px",
-          transform: "translateX(-50%)",
-          border: "14px solid oklch(0.82 0.03 85)",
-          "box-shadow": "inset 0 0 0 2px oklch(0.3 0.02 60)",
-          background: `linear-gradient(180deg, oklch(${0.17 + light() * 0.05} 0.02 60) 0%, oklch(${0.24 + light() * 0.06} 0.035 ${70 - light() * 20}) 100%)`,
-          padding: "34px 34px",
-          "box-sizing": "border-box",
+          left: `${W / 2 - 230}px`,
+          top: `${SLOT - 6}px`,
+          width: "460px",
+          height: `${H - SLOT + 40}px`,
+          "border-radius": "26px 26px 0 0",
+          background: "linear-gradient(180deg, oklch(0.3 0.01 260), oklch(0.17 0.01 260) 30%, oklch(0.12 0.01 260))",
+          "box-shadow": "inset 0 2px 0 oklch(0.42 0.01 260), 0 -10px 30px oklch(0.1 0.05 260 / 0.5)",
         }}
       >
-        <div style={{ "text-align": "center", opacity: header() }}>
-          <h2 style={{ margin: 0, "font-size": "34px", "font-weight": 300, "letter-spacing": "0.01em" }}>{golomt.company}</h2>
-        </div>
-        <div style={{ position: "relative", "margin-top": "34px" }}>
-          <For each={golomt.highlights}>
-            {(text, i) => (
-              <p style={{ position: "absolute", top: 0, left: 0, right: 0, margin: 0, "font-size": "19px", "line-height": 1.6, "font-weight": 350, "text-align": "center", "text-wrap": "pretty", opacity: shown(i())() }}>
-                {text}
-              </p>
-            )}
-          </For>
-        </div>
-      </div>
-      <p style={{ position: "absolute", left: "34px", top: "300px", width: "190px", margin: 0, "text-align": "right", "font-size": "14px", "line-height": 1.5, opacity: header() * 0.85 }}>
-        {golomt.period}
-      </p>
-      <p style={{ position: "absolute", right: "34px", top: "300px", width: "190px", margin: 0, "font-size": "14px", "line-height": 1.5, opacity: header() * 0.85 }}>
-        {golomt.role}
-      </p>
-      <p style={{ position: "absolute", left: "50%", bottom: "34px", width: "620px", transform: "translateX(-50%)", margin: 0, "text-align": "center", "font-size": "14px", "line-height": 1.5, opacity: header() * 0.8 }}>
-        {golomt.context}
-      </p>
-      <div style={{ position: "absolute", left: "50%", top: "636px", transform: "translateX(-50%)", display: "flex", gap: "12px" }}>
-        <For each={golomt.highlights}>
-          {(_, i) => <span style={{ width: "8px", height: "8px", background: ink, opacity: 0.25 + shown(i())() * 0.75 }} />}
-        </For>
+        <div style={{ margin: "6px auto 0", width: "384px", height: "8px", "border-radius": "4px", background: "oklch(0.06 0 0)", "box-shadow": "inset 0 3px 4px oklch(0 0 0)" }} />
+        <img src="/logos/golomt-mark.png" alt="" style={{ display: "block", width: "38px", margin: "34px auto 0", "border-radius": "6px" }} />
+        <div style={{ position: "absolute", right: "34px", top: "44px", width: "8px", height: "8px", "border-radius": "50%", background: props.u() > 0.03 && props.u() < 0.97 ? "oklch(0.8 0.2 145)" : "oklch(0.35 0.02 145)", "box-shadow": "0 0 10px oklch(0.8 0.2 145 / 0.6)" }} />
       </div>
     </Frame>
   )
@@ -209,7 +218,10 @@ export function Erxes(props: ReelProps & { spin: () => number }) {
         }}
       >
         <div style={card(0)}>
-          <h2 style={{ margin: 0, "font-size": "150px", "font-weight": 900, "font-stretch": "125%", "line-height": 0.9, "letter-spacing": "-0.01em" }}>{erxes.company}</h2>
+          <h2 style={{ margin: 0, display: "flex", "align-items": "center", gap: "26px", "font-size": "150px", "font-weight": 900, "font-stretch": "125%", "line-height": 0.9, "letter-spacing": "-0.01em" }}>
+            <img src="/logos/erxes.svg" alt="" style={{ height: "128px" }} />
+            {erxes.company}
+          </h2>
           <p style={{ margin: "18px 0 0", "font-size": "22px", "font-weight": 700 }}>
             {erxes.role} · {erxes.period}
           </p>
