@@ -8,6 +8,10 @@ export default Alchemy.Stack(
   Effect.gen(function* () {
     const site = yield* Cloudflare.Website.Vite("Site", {
       domain: "portfoliov2.darjs.dev",
+      routes: [
+        { pattern: "darjs.dev/*", zoneName: "darjs.dev" },
+        { pattern: "www.darjs.dev/*", zoneName: "darjs.dev" },
+      ],
       assets: { notFoundHandling: "single-page-application" },
     })
     return { url: site.url.as<string>() }

@@ -165,7 +165,7 @@ export const erxesCamera = (u: number) => {
   const slot = plateau(x, ERXES_SLOTS - 1)
   const between = x - Math.floor(x)
   const strobe = between > 0.38 && between < 0.66 && Math.floor(x) < ERXES_SLOTS - 1
-  return { slot, strobe, next: Math.floor(x) + 1 }
+  return { slot, strobe, next: Math.min(Math.floor(x) + 1, ERXES_SLOTS - 1) }
 }
 
 export const strobeWord = (slot: number) => {
