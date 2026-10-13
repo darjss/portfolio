@@ -1,0 +1,962 @@
+[
+  {
+    "album": "10,000 gecs",
+    "artist": "100 gecs"
+  },
+  {
+    "album": "100 gecs",
+    "artist": "100 gecs"
+  },
+  {
+    "album": "1000 gecs",
+    "artist": "100 gecs"
+  },
+  {
+    "album": "gecs on the internet",
+    "artist": "100 gecs"
+  },
+  {
+    "album": "2",
+    "artist": "2hollis"
+  },
+  {
+    "album": "boy",
+    "artist": "2hollis"
+  },
+  {
+    "album": "star",
+    "artist": "2hollis"
+  },
+  {
+    "album": "White Tiger",
+    "artist": "2hollis"
+  },
+  {
+    "album": "Selected Ambient Works 85-92",
+    "artist": "Aphex Twin"
+  },
+  {
+    "album": "Selected Ambient Works Volume II",
+    "artist": "Aphex Twin"
+  },
+  {
+    "album": "Syro",
+    "artist": "Aphex Twin"
+  },
+  {
+    "album": "Ca$ino",
+    "artist": "Baby Keem"
+  },
+  {
+    "album": "DIE FOR MY BITCH",
+    "artist": "Baby Keem"
+  },
+  {
+    "album": "The Melodic Blue",
+    "artist": "Baby Keem"
+  },
+  {
+    "album": "Depression Cherry",
+    "artist": "Beach House"
+  },
+  {
+    "album": "dont smile at me",
+    "artist": "Billie Eilish"
+  },
+  {
+    "album": "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
+    "artist": "Billie Eilish"
+  },
+  {
+    "album": "Aethiopes",
+    "artist": "billy woods"
+  },
+  {
+    "album": "GOLLIWOG",
+    "artist": "billy woods"
+  },
+  {
+    "album": "History Will Absolve Me",
+    "artist": "billy woods"
+  },
+  {
+    "album": "Ants From Up There",
+    "artist": "Black Country, New Road"
+  },
+  {
+    "album": "333",
+    "artist": "Bladee"
+  },
+  {
+    "album": "Cold Visions",
+    "artist": "Bladee"
+  },
+  {
+    "album": "Eversince",
+    "artist": "Bladee"
+  },
+  {
+    "album": "EXETER",
+    "artist": "Bladee"
+  },
+  {
+    "album": "Gluee",
+    "artist": "Bladee"
+  },
+  {
+    "album": "Red Light",
+    "artist": "Bladee"
+  },
+  {
+    "album": "SPIDERR",
+    "artist": "Bladee"
+  },
+  {
+    "album": "The Fool",
+    "artist": "Bladee"
+  },
+  {
+    "album": "Working On Dying",
+    "artist": "Bladee"
+  },
+  {
+    "album": "Crest",
+    "artist": "Bladee & Ecco2K"
+  },
+  {
+    "album": "Good Luck",
+    "artist": "Bladee & Mechatok"
+  },
+  {
+    "album": "Negro Swan",
+    "artist": "Blood Orange"
+  },
+  {
+    "album": "Twilight",
+    "artist": "Boa"
+  },
+  {
+    "album": "boygenius",
+    "artist": "boygenius"
+  },
+  {
+    "album": "hypnagogia",
+    "artist": "brakence"
+  },
+  {
+    "album": "hypochondriac",
+    "artist": "brakence"
+  },
+  {
+    "album": "punk2",
+    "artist": "brakence"
+  },
+  {
+    "album": "Sonder Son",
+    "artist": "Brent Faiyaz"
+  },
+  {
+    "album": "SATURATION",
+    "artist": "BROCKHAMPTON"
+  },
+  {
+    "album": "SATURATION II",
+    "artist": "BROCKHAMPTON"
+  },
+  {
+    "album": "SATURATION III",
+    "artist": "BROCKHAMPTON"
+  },
+  {
+    "album": "T R A P S O U L",
+    "artist": "Bryson Tiller"
+  },
+  {
+    "album": "Minecraft – Volume Alpha",
+    "artist": "C418"
+  },
+  {
+    "album": "Minecraft – Volume Beta",
+    "artist": "C418"
+  },
+  {
+    "album": "Heavy Metal",
+    "artist": "Cameron Winter"
+  },
+  {
+    "album": "Desire, I Want to Turn Into You",
+    "artist": "Caroline Polachek"
+  },
+  {
+    "album": "Brat and it's completely different but also still brat",
+    "artist": "Charli XCX"
+  },
+  {
+    "album": "Brat and it's the same but there's three more songs so it's not",
+    "artist": "Charli XCX"
+  },
+  {
+    "album": "how i'm feeling now",
+    "artist": "Charli XCX"
+  },
+  {
+    "album": "Charm",
+    "artist": "Clairo"
+  },
+  {
+    "album": "diary 001 EP",
+    "artist": "Clairo"
+  },
+  {
+    "album": "Immunity",
+    "artist": "Clairo"
+  },
+  {
+    "album": "Let God Sort Em Out",
+    "artist": "Clipse"
+  },
+  {
+    "album": "Ghost With Skin",
+    "artist": "Corbin"
+  },
+  {
+    "album": "Mourn",
+    "artist": "Corbin"
+  },
+  {
+    "album": "Discovery",
+    "artist": "Daft Punk"
+  },
+  {
+    "album": "Random Access Memories",
+    "artist": "Daft Punk"
+  },
+  {
+    "album": "Freudian",
+    "artist": "Daniel Caesar"
+  },
+  {
+    "album": "NEVER ENOUGH",
+    "artist": "Daniel Caesar"
+  },
+  {
+    "album": "Son of Spergy",
+    "artist": "Daniel Caesar"
+  },
+  {
+    "album": "Atrocity Exhibition",
+    "artist": "Danny Brown"
+  },
+  {
+    "album": "Stardust",
+    "artist": "Danny Brown"
+  },
+  {
+    "album": "The Money Store",
+    "artist": "Death Grips"
+  },
+  {
+    "album": "TA13OO",
+    "artist": "Denzel Curry"
+  },
+  {
+    "album": "UNLOCKED",
+    "artist": "Denzel Curry & Kenny Beats"
+  },
+  {
+    "album": "Baby",
+    "artist": "Dijon"
+  },
+  {
+    "album": "Doris",
+    "artist": "Earl Sweatshirt"
+  },
+  {
+    "album": "I Don’t Like Shit, I Don’t Go Outside: An Album By Earl Sweatshirt",
+    "artist": "Earl Sweatshirt"
+  },
+  {
+    "album": "Live Laugh Love",
+    "artist": "Earl Sweatshirt"
+  },
+  {
+    "album": "Some Rap Songs",
+    "artist": "Earl Sweatshirt"
+  },
+  {
+    "album": "POMPEII // UTILITY",
+    "artist": "Earl Sweatshirt;MIKE;SURF GANG"
+  },
+  {
+    "album": "E",
+    "artist": "Ecco2k"
+  },
+  {
+    "album": "Atlanta Millionaires Club",
+    "artist": "Faye Webster"
+  },
+  {
+    "album": "I Know I'm Funny haha",
+    "artist": "Faye Webster"
+  },
+  {
+    "album": "Underdressed At The Symphony",
+    "artist": "Faye Webster"
+  },
+  {
+    "album": "Blonde",
+    "artist": "Frank Ocean"
+  },
+  {
+    "album": "channel ORANGE",
+    "artist": "Frank Ocean"
+  },
+  {
+    "album": "nostalgia,ULTRA.",
+    "artist": "Frank Ocean"
+  },
+  {
+    "album": "Bandana",
+    "artist": "Freddie Gibbs & Madlib"
+  },
+  {
+    "album": "Piñata",
+    "artist": "Freddie Gibbs & Madlib"
+  },
+  {
+    "album": "Alfredo",
+    "artist": "Freddie Gibbs & The Alchemist"
+  },
+  {
+    "album": "eviscerated",
+    "artist": "funeral"
+  },
+  {
+    "album": "Getting Killed",
+    "artist": "Geese"
+  },
+  {
+    "album": "October Country",
+    "artist": "Ghost Mountain"
+  },
+  {
+    "album": "all dogs go to heaven",
+    "artist": "Glaive"
+  },
+  {
+    "album": "cypress grove",
+    "artist": "Glaive"
+  },
+  {
+    "album": "May It Never Falter",
+    "artist": "Glaive"
+  },
+  {
+    "album": "Y’all",
+    "artist": "Glaive"
+  },
+  {
+    "album": "i was mature for my age, but i was still a child",
+    "artist": "grouptherapy."
+  },
+  {
+    "album": "Dune: Original Motion Picture Soundtrack",
+    "artist": "Hans Zimmer"
+  },
+  {
+    "album": "Dune: Part Two: Original Motion Picture Soundtrack",
+    "artist": "Hans Zimmer"
+  },
+  {
+    "album": "Interstellar: Original Motion Picture Soundtrack Expanded Edition",
+    "artist": "Hans Zimmer"
+  },
+  {
+    "album": "Seeking Darkness",
+    "artist": "Huremic"
+  },
+  {
+    "album": "By the Time I Get to Phoenix",
+    "artist": "Injury Reserve"
+  },
+  {
+    "album": "Cilvia Demo",
+    "artist": "Isaiah Rashad"
+  },
+  {
+    "album": "JACKBOYS",
+    "artist": "JACKBOYS"
+  },
+  {
+    "album": "SYRE",
+    "artist": "Jaden Smith"
+  },
+  {
+    "album": "Playing Robots Into Heaven (Endel Focus Soundscape)",
+    "artist": "James Blake"
+  },
+  {
+    "album": "Census Designated",
+    "artist": "Jane Remover"
+  },
+  {
+    "album": "Frailty",
+    "artist": "Jane Remover"
+  },
+  {
+    "album": "Indie rock",
+    "artist": "Jane Remover"
+  },
+  {
+    "album": "Revengeseekerz",
+    "artist": "Jane Remover"
+  },
+  {
+    "album": "♡",
+    "artist": "Jane Remover"
+  },
+  {
+    "album": "DiCaprio 2",
+    "artist": "JID"
+  },
+  {
+    "album": "The Forever Story",
+    "artist": "JID"
+  },
+  {
+    "album": "The Never Story",
+    "artist": "JID"
+  },
+  {
+    "album": "black british music (2025)",
+    "artist": "Jim Legxacy"
+  },
+  {
+    "album": "BALLADS 1",
+    "artist": "Joji"
+  },
+  {
+    "album": "Lost Ballads",
+    "artist": "Joji"
+  },
+  {
+    "album": "Nectar",
+    "artist": "Joji"
+  },
+  {
+    "album": "Piss in the Wind",
+    "artist": "Joji"
+  },
+  {
+    "album": "All My Heroes Are Cornballs",
+    "artist": "JPEGMAFIA"
+  },
+  {
+    "album": "I LAY DOWN MY LIFE FOR YOU",
+    "artist": "JPEGMAFIA"
+  },
+  {
+    "album": "LP!",
+    "artist": "JPEGMAFIA"
+  },
+  {
+    "album": "Veteran: Director’s Cut",
+    "artist": "JPEGMAFIA"
+  },
+  {
+    "album": "La La Land",
+    "artist": "Justin Herwitz"
+  },
+  {
+    "album": "Babylon (Music from the Motion Picture)",
+    "artist": "Justin Hurwitz"
+  },
+  {
+    "album": "Whiplash: Original Motion Picture Soundtrack",
+    "artist": "Justin Hurwitz"
+  },
+  {
+    "album": "808s & Heartbreak",
+    "artist": "Kanye West"
+  },
+  {
+    "album": "Donda",
+    "artist": "Kanye West"
+  },
+  {
+    "album": "Graduation",
+    "artist": "Kanye West"
+  },
+  {
+    "album": "Late Registration",
+    "artist": "Kanye West"
+  },
+  {
+    "album": "My Beautiful Dark Twisted Fantasy",
+    "artist": "Kanye West"
+  },
+  {
+    "album": "ye",
+    "artist": "Kanye West"
+  },
+  {
+    "album": "A Great Chaos",
+    "artist": "Ken Carson"
+  },
+  {
+    "album": "More Chaos",
+    "artist": "Ken Carson"
+  },
+  {
+    "album": "DAMN.",
+    "artist": "Kendrick Lamar"
+  },
+  {
+    "album": "good kid, m.A.A.d city",
+    "artist": "Kendrick Lamar"
+  },
+  {
+    "album": "To Pimp a Butterfly",
+    "artist": "Kendrick Lamar"
+  },
+  {
+    "album": "untitled unmastered.",
+    "artist": "Kendrick Lamar"
+  },
+  {
+    "album": "Blush",
+    "artist": "Kevin Abstract"
+  },
+  {
+    "album": "i felt like a sketch",
+    "artist": "key vs. locket"
+  },
+  {
+    "album": "Man on the Moon: The End of Day",
+    "artist": "Kid Cudi"
+  },
+  {
+    "album": "KIDS SEE GHOSTS",
+    "artist": "KIDS SEE GHOSTS, Kanye West, Kid Cudi"
+  },
+  {
+    "album": "K1",
+    "artist": "kmoe"
+  },
+  {
+    "album": "Chemtrails Over The Country Club",
+    "artist": "Lana Del Rey"
+  },
+  {
+    "album": "Norman Fucking Rockwell!",
+    "artist": "Lana Del Rey"
+  },
+  {
+    "album": "Ultraviolence",
+    "artist": "Lana Del Rey"
+  },
+  {
+    "album": "REMIXES 2017",
+    "artist": "Laura Les"
+  },
+  {
+    "album": "Lotus",
+    "artist": "Little Simz"
+  },
+  {
+    "album": "Sometimes I Might Be Introvert",
+    "artist": "Little Simz"
+  },
+  {
+    "album": "Melodrama",
+    "artist": "Lorde"
+  },
+  {
+    "album": "Pure heroine",
+    "artist": "Lorde"
+  },
+  {
+    "album": "Unmusique",
+    "artist": "Lucy Bedroque"
+  },
+  {
+    "album": "Oppenheimer (Original Motion Picture Soundtrack)",
+    "artist": "Ludwig Goransson"
+  },
+  {
+    "album": "Faces",
+    "artist": "Mac Miller"
+  },
+  {
+    "album": "GO:OD AM",
+    "artist": "Mac Miller"
+  },
+  {
+    "album": "Swimming",
+    "artist": "Mac Miller"
+  },
+  {
+    "album": "Madvillainy",
+    "artist": "Madvillain"
+  },
+  {
+    "album": "Imaginal Disk",
+    "artist": "Magdalena Bay"
+  },
+  {
+    "album": "Submarine",
+    "artist": "Marias"
+  },
+  {
+    "album": "Let the Sun Talk",
+    "artist": "MAVI"
+  },
+  {
+    "album": "Fade Into You",
+    "artist": "Mazzy Star"
+  },
+  {
+    "album": "Oncle Jazz",
+    "artist": "Men I Trust"
+  },
+  {
+    "album": "MM..FOOD",
+    "artist": "MF DOOM"
+  },
+  {
+    "album": "JAMIE",
+    "artist": "Montell Fish"
+  },
+  {
+    "album": "Loveless",
+    "artist": "My Bloody Valentine"
+  },
+  {
+    "album": "BAD ASS F*CKING KID",
+    "artist": "Nettspend"
+  },
+  {
+    "album": "I Love My Computer",
+    "artist": "Ninajirachi"
+  },
+  {
+    "album": "In Utero",
+    "artist": "Nirvana"
+  },
+  {
+    "album": "Nevermind",
+    "artist": "Nirvana"
+  },
+  {
+    "album": "The Passionate Ones",
+    "artist": "Nourished by Time"
+  },
+  {
+    "album": "Modal Soul",
+    "artist": "Nujabes"
+  },
+  {
+    "album": "GUTS",
+    "artist": "Olivia Rodrigo"
+  },
+  {
+    "album": "SOUR",
+    "artist": "Olivia Rodrigo"
+  },
+  {
+    "album": "D>E>A>T>H>M>E>T>A>L",
+    "artist": "Panchiko"
+  },
+  {
+    "album": "This Is Why",
+    "artist": "Paramore"
+  },
+  {
+    "album": "The Dark Side of the Moon",
+    "artist": "Pink Floyd"
+  },
+  {
+    "album": "Die Lit",
+    "artist": "Playboi Carti"
+  },
+  {
+    "album": "Magnolia",
+    "artist": "Playboi Carti"
+  },
+  {
+    "album": "MUSIC",
+    "artist": "Playboi Carti"
+  },
+  {
+    "album": "SMILE! :D",
+    "artist": "Porter Robinson"
+  },
+  {
+    "album": "Worlds",
+    "artist": "Porter Robinson"
+  },
+  {
+    "album": "DAYTONA",
+    "artist": "Pusha T"
+  },
+  {
+    "album": "From Me To You",
+    "artist": "Quadeca"
+  },
+  {
+    "album": "I Didn't Mean to Haunt You",
+    "artist": "Quadeca"
+  },
+  {
+    "album": "SCRAPYARD",
+    "artist": "Quadeca"
+  },
+  {
+    "album": "Vanisher, Horizon Scraper",
+    "artist": "Quadeca"
+  },
+  {
+    "album": "Racing Mount Pleasant",
+    "artist": "Racing Mount Pleasant"
+  },
+  {
+    "album": "In Rainbows",
+    "artist": "Radiohead"
+  },
+  {
+    "album": "Kid A",
+    "artist": "Radiohead"
+  },
+  {
+    "album": "OK Computer",
+    "artist": "Radiohead"
+  },
+  {
+    "album": "sankofa",
+    "artist": "redveil"
+  },
+  {
+    "album": "The Sailor",
+    "artist": "Rich Brian"
+  },
+  {
+    "album": "LUX",
+    "artist": "ROSALÍA"
+  },
+  {
+    "album": "Process",
+    "artist": "Sampha"
+  },
+  {
+    "album": "Souvlaki",
+    "artist": "Slowdive"
+  },
+  {
+    "album": "Nothing Great About Britain",
+    "artist": "slowthai"
+  },
+  {
+    "album": "TYRON",
+    "artist": "Slowthai"
+  },
+  {
+    "album": "UGLY",
+    "artist": "slowthai"
+  },
+  {
+    "album": "A Seat at the Table",
+    "artist": "Solange"
+  },
+  {
+    "album": "Gemini Rights",
+    "artist": "Steve Lacy"
+  },
+  {
+    "album": "Javelin",
+    "artist": "Sufjan Stevens"
+  },
+  {
+    "album": "To Be Kind",
+    "artist": "Swans"
+  },
+  {
+    "album": "Currents",
+    "artist": "Tame Impala"
+  },
+  {
+    "album": "The Slow Rush",
+    "artist": "Tame Impala"
+  },
+  {
+    "album": "From The Pyre",
+    "artist": "The Last Dinner Party"
+  },
+  {
+    "album": "Prelude to Ecstasy",
+    "artist": "The Last Dinner Party"
+  },
+  {
+    "album": "Everything Harmony",
+    "artist": "The Lemon Twigs"
+  },
+  {
+    "album": "The Queen Is Dead",
+    "artist": "The Smiths"
+  },
+  {
+    "album": "Is This It",
+    "artist": "The Strokes"
+  },
+  {
+    "album": "The New Abnormal",
+    "artist": "The Strokes"
+  },
+  {
+    "album": "After Hours",
+    "artist": "The Weeknd"
+  },
+  {
+    "album": "ASTROWORLD",
+    "artist": "Travis Scott"
+  },
+  {
+    "album": "Birds in the Trap Sing McKnight",
+    "artist": "Travis Scott"
+  },
+  {
+    "album": "Rodeo",
+    "artist": "Travis Scott"
+  },
+  {
+    "album": "UTOPIA",
+    "artist": "Travis Scott"
+  },
+  {
+    "album": "The Social Network",
+    "artist": "Trent Reznor"
+  },
+  {
+    "album": "CALL ME IF YOU GET LOST",
+    "artist": "Tyler, The Creator"
+  },
+  {
+    "album": "CHROMAKOPIA",
+    "artist": "Tyler, The Creator"
+  },
+  {
+    "album": "Flower Boy",
+    "artist": "Tyler, The Creator"
+  },
+  {
+    "album": "Goblin",
+    "artist": "Tyler, The Creator"
+  },
+  {
+    "album": "IGOR",
+    "artist": "Tyler, The Creator"
+  },
+  {
+    "album": "Wolf",
+    "artist": "Tyler, The Creator"
+  },
+  {
+    "album": "boneyard aka fearmonger",
+    "artist": "underscores"
+  },
+  {
+    "album": "U",
+    "artist": "underscores"
+  },
+  {
+    "album": "Wallsocket (Director’s Cut)",
+    "artist": "underscores"
+  },
+  {
+    "album": "TV ANIMATION \"Sonny Boy\" original soundtrack",
+    "artist": "VARIOUS"
+  },
+  {
+    "album": "viagr aboys",
+    "artist": "Viagra Boys"
+  },
+  {
+    "album": "Big Fish Theory",
+    "artist": "Vince Staples"
+  },
+  {
+    "album": "Dark Times",
+    "artist": "Vince Staples"
+  },
+  {
+    "album": "Summertime ’06",
+    "artist": "Vince Staples"
+  },
+  {
+    "album": "Hitler Wears Hermes 8: Sincerely Adolf",
+    "artist": "Westside Gunn"
+  },
+  {
+    "album": "Pray for Paris",
+    "artist": "Westside Gunn"
+  },
+  {
+    "album": "Titanic Rising",
+    "artist": "Weyes Blood"
+  },
+  {
+    "album": "17",
+    "artist": "Xxxtentacion"
+  },
+  {
+    "album": "LOOK AT ME: THE ALBUM",
+    "artist": "Xxxtentacion"
+  },
+  {
+    "album": "Revenge",
+    "artist": "Xxxtentacion"
+  },
+  {
+    "album": "softscars",
+    "artist": "yeule"
+  },
+  {
+    "album": "28 Years Later: Original Motion Picture Soundtrack",
+    "artist": "Young Fathers"
+  },
+  {
+    "album": "Heavy Heavy",
+    "artist": "Young Fathers"
+  },
+  {
+    "album": "Barter 6",
+    "artist": "Young Thug"
+  },
+  {
+    "album": "JEFFERY",
+    "artist": "Young Thug"
+  },
+  {
+    "album": "Jonatan",
+    "artist": "Yung Lean"
+  },
+  {
+    "album": "Starz",
+    "artist": "Yung Lean"
+  },
+  {
+    "album": "Victorious//Bullets",
+    "artist": "Yung Lean"
+  },
+  {
+    "album": "Psykos",
+    "artist": "Yung Lean, Bladee"
+  },
+  {
+    "album": "Heaven To A Tortured Mind",
+    "artist": "Yves Tumor"
+  },
+  {
+    "album": "Praise A Lord Who Chews But Which Does Not Consume; (Or Simply, Hot Between Worlds)",
+    "artist": "Yves Tumor"
+  }
+]

@@ -1,49 +1,95 @@
-// Taste data — the personality layer. Scraped from Letterboxd (Sjrad) and the local music library.
+import albums from "./albums.json"
 
-export const favoriteFilms = ["La La Land", "Jeanne Dielman, 23, quai du Commerce, 1080 Bruxelles", "In the Mood for Love", "Climax"]
+export { albums }
 
-export const fiveStarFilms = [
-  "Dune: Part Two", "Poor Things", "The Holdovers", "Oppenheimer", "Asteroid City", "BlackBerry", "Babylon",
-  "Decision to Leave", "tick, tick... BOOM!", "Dune", "The French Dispatch", "Kajillionaire", "Little Women",
-  "Marriage Story", "Parasite", "Chernobyl", "Booksmart", "The Favourite", "Climax", "Hereditary",
-  "Blade Runner 2049", "Dunkirk", "20th Century Women", "Arrival", "La La Land", "The Handmaiden", "Spotlight",
-  "The Witch", "The Grand Budapest Hotel", "Her", "The Perks of Being a Wallflower", "Frances Ha",
-  "The Social Network", "Fantastic Mr. Fox", "Inglourious Basterds", "The Dark Knight", "Ratatouille",
-  "The Incredibles", "Before Sunset", "Punch-Drunk Love", "Monsters, Inc.", "The Royal Tenenbaums",
-  "In the Mood for Love", "Magnolia", "Good Will Hunting", "Whisper of the Heart", "Before Sunrise",
-  "Forrest Gump", "Schindler's List", "A Brighter Summer Day", "Do the Right Thing",
-  "Jeanne Dielman, 23, quai du Commerce, 1080 Bruxelles", "Psycho", "Seven Samurai", "Ikiru",
-]
+export const films = {
+  total: 775,
+  letterboxd: "https://letterboxd.com/Sjrad/",
+  favourites: [
+    "La La Land (2016)",
+    "Jeanne Dielman, 23, quai du Commerce, 1080 Bruxelles (1975)",
+    "In the Mood for Love (2000)",
+    "Climax (2018)",
+  ],
+  fiveStars: [
+  "20th Century Women (2016)",
+  "A Brighter Summer Day (1991)",
+  "Arrival (2016)",
+  "Asteroid City (2023)",
+  "Babylon (2022)",
+  "Before Sunrise (1995)",
+  "Before Sunset (2004)",
+  "BlackBerry (2023)",
+  "Blade Runner 2049 (2017)",
+  "Booksmart (2019)",
+  "Brigada (2002)",
+  "Chernobyl (2019)",
+  "Climax (2018)",
+  "Crazy, Stupid, Love. (2011)",
+  "Decision to Leave (2022)",
+  "Do the Right Thing (1989)",
+  "Dune (2021)",
+  "Dune: Part Two (2024)",
+  "Dunkirk (2017)",
+  "Fantastic Mr. Fox (2009)",
+  "Forrest Gump (1994)",
+  "Frances Ha (2012)",
+  "Good Will Hunting (1997)",
+  "Her (2013)",
+  "Hereditary (2018)",
+  "Home Alone (1990)",
+  "Ikiru (1952)",
+  "Inglourious Basterds (2009)",
+  "In the Mood for Love (2000)",
+  "Jeanne Dielman, 23, quai du Commerce, 1080 Bruxelles (1975)",
+  "Kajillionaire (2020)",
+  "La La Land (2016)",
+  "Little Women (2019)",
+  "Magnolia (1999)",
+  "Marriage Story (2019)",
+  "Mighty Prince (1945)",
+  "Monsters, Inc. (2001)",
+  "Oppenheimer (2023)",
+  "Parasite (2019)",
+  "Poor Things (2023)",
+  "Psycho (1960)",
+  "Punch-Drunk Love (2002)",
+  "Ratatouille (2007)",
+  "Schindler's List (1993)",
+  "Seven Samurai (1954)",
+  "Spotlight (2015)",
+  "The Dark Knight (2008)",
+  "The Favourite (2018)",
+  "The French Dispatch of the Liberty, Kansas Evening Sun (2021)",
+  "The Grand Budapest Hotel (2014)",
+  "The Handmaiden (2016)",
+  "The Holdovers (2023)",
+  "The Incredibles (2004)",
+  "The Perks of Being a Wallflower (2012)",
+  "The Royal Tenenbaums (2001)",
+  "The Social Network (2010)",
+  "The Witch (2015)",
+  "tick, tick... BOOM! (2021)",
+  "Whisper of the Heart (1995)",
+  ],
+  reviews: [
+    { film: "Phantom Thread (2017)", text: "i think i understand what love is now but its definitely not this" },
+    { film: "Kinds of Kindness (2024)", text: "they not like us" },
+    { film: "Despicable Me 4 (2024)", text: "the absolute abysmal state of childrens animation" },
+    { film: "Madagascar (2005)", text: "hits different after visiting the zoo" },
+  ],
+}
 
-export const favoriteDirectors = [
-  "Wes Anderson", "Paul Thomas Anderson", "Park Chan-wook", "Denis Villeneuve",
-  "Christopher Nolan", "Richard Linklater", "Wong Kar-wai", "Yorgos Lanthimos",
-]
+export const books = {
+  reading: "The Strength of the Few",
+  loved: ["Project Hail Mary", "Red Rising", "The Secret History"],
+}
 
-export const albums = [
-  { title: "Loveless", artist: "My Bloody Valentine", palette: ["#e8a0b4", "#7a4a5e"] },
-  { title: "Souvlaki", artist: "Slowdive", palette: ["#8fb8c8", "#3a5a6a"] },
-  { title: "nostalgia, ULTRA", artist: "Frank Ocean", palette: ["#e86a2a", "#8a3a1a"] },
-  { title: "Melodrama", artist: "Lorde", palette: ["#2a4a8a", "#8a2a5a"] },
-  { title: "Norman Fucking Rockwell!", artist: "Lana Del Rey", palette: ["#6a7a9a", "#c8b8a8"] },
-  { title: "OK Computer", artist: "Radiohead", palette: ["#9ab8c8", "#4a5a6a"] },
-  { title: "Frailty", artist: "Jane Remover", palette: ["#b8a8c8", "#3a3a4a"] },
-  { title: "Discovery", artist: "Daft Punk", palette: ["#e8c84a", "#2a2a4a"] },
-  { title: "Wallsocket", artist: "underscores", palette: ["#c8d8b8", "#4a5a3a"] },
-  { title: "Selected Ambient Works 85-92", artist: "Aphex Twin", palette: ["#d8d8d8", "#5a5a5a"] },
-  { title: "Depression Cherry", artist: "Beach House", palette: ["#c84a5a", "#4a1a2a"] },
-  { title: "Ants From Up There", artist: "Black Country, New Road", palette: ["#c8a86a", "#5a4a2a"] },
-  { title: "Ultraviolence", artist: "Lana Del Rey", palette: ["#8a8a9a", "#2a2a3a"] },
-  { title: "untitled unmastered.", artist: "Kendrick Lamar", palette: ["#3a3a3a", "#c8c8c8"] },
-  { title: "Syro", artist: "Aphex Twin", palette: ["#c8c8b8", "#6a6a5a"] },
-]
-
-export const hyperpopArtists = ["Jane Remover", "100 gecs", "glaive", "2hollis", "underscores", "kmoe", "brakence", "quinn", "Lucy Bedroque"]
-
-export const books = [
-  { title: "The Secret History", author: "Donna Tartt", status: "reading" },
-  { title: "Project Hail Mary", author: "Andy Weir", status: "read" },
-  { title: "Red Rising", author: "Pierce Brown", status: "read" },
-] as const
-
-export const letterboxd = "https://letterboxd.com/Sjrad/"
+export const rice = {
+  compositor: "niri",
+  shell: "DankMaterialShell",
+  palette: "matugen",
+  terminal: "ghostty",
+  shells: ["fish", "nushell"],
+  music: ["mpd", "rmpc", "navidrome"],
+}
