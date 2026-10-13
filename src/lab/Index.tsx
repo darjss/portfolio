@@ -52,7 +52,7 @@ export default function Index() {
         </A>
         <A href="/concert" class="door door-concert" onClick={commit}>
           <span class="door-blocks" aria-hidden="true" />
-          <span class="door-kicker">darjs_cv.mkv · 5 tracks · loud</span>
+          <span class="door-kicker">darjs_cv.mkv · 6 tracks · loud</span>
           <span class="door-title">watch a concert</span>
           <span class="door-sub">the cv as a corrupted video file that moves with the music</span>
         </A>

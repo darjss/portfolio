@@ -1,6 +1,6 @@
 import type { Pulse } from "./codec"
 
-const TRACK_IDS = [1591694830, 1687739618, 1693478265, 1687014448, 1762679426]
+const TRACK_IDS = [1800020722, 1803726236, 1655225508, 1672465089, 1800020686, 1655225321]
 
 type LookupResult = {
   trackId: number
