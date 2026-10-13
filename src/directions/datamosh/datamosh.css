@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Hanken+Grotesk:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500;700&display=swap");
 
 .dm {
   --acid: #b8ff2c;
@@ -11,11 +11,11 @@
   --bg-2: #12101c;
   --mono: "JetBrains Mono", ui-monospace, monospace;
   --display: "Anybody", system-ui, sans-serif;
+  --body: "Hanken Grotesk", system-ui, sans-serif;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--display);
-  font-stretch: 100%;
+  font-family: var(--body);
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -746,4 +746,10 @@
   .dm-intro {
     animation: none;
   }
+}
+
+.dm-proj-pitch,
+.dm-also-name,
+.dm-stream-items {
+  font-family: var(--display);
 }

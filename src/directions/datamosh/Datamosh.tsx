@@ -224,7 +224,7 @@ function Film(props: { offsets: number[]; ref?: (el: HTMLDivElement) => void }) 
 }
 
 const measure = (film: HTMLElement) =>
-  Array.from(film.querySelectorAll<HTMLElement>("[data-chapter]"), (el) => el.offsetTop)
+  Array.from(film.querySelectorAll<HTMLElement>("[data-chapter]"), (el, i) => (i ? el.offsetTop + 48 : 0))
 
 function Player(props: { onFail: () => void }) {
   let source!: HTMLCanvasElement
@@ -235,6 +235,8 @@ function Player(props: { onFail: () => void }) {
   const [offsets, setOffsets] = createSignal<number[]>([])
   const [scroll, setScroll] = createSignal(0)
   const [total, setTotal] = createSignal(1)
+  const [height, setHeight] = createSignal(1)
+  const [view, setView] = createSignal(1)
   const [stats, setStats] = createSignal<CodecStats>({ type: "P", gop: 0, stale: 0, motion: 0, decoded: false })
   const [started, setStarted] = createSignal(false)
   const [sound, setSound] = createSignal(false)
@@ -243,6 +245,8 @@ function Player(props: { onFail: () => void }) {
   const remeasure = () => {
     setOffsets(measure(film))
     setTotal(Math.max(1, scroller.scrollHeight - scroller.clientHeight))
+    setHeight(Math.max(1, scroller.scrollHeight))
+    setView(scroller.clientHeight)
     setScroll(scroller.scrollTop)
   }
 
@@ -297,7 +301,10 @@ function Player(props: { onFail: () => void }) {
     })
   })
 
+  const share = (px: number) => `${(Math.min(px, height()) / height()) * 100}%`
+
   const current = () => {
+    if (scroll() >= total() - 2) return CHAPTERS.length - 1
     const y = scroll() + 160
     let index = 0
     offsets().forEach((o, i) => {
@@ -342,8 +349,8 @@ function Player(props: { onFail: () => void }) {
                   class="dm-seg"
                   data-active={current() === i()}
                   style={{
-                    left: `${((offsets()[i()] ?? 0) / (total() + 1)) * 100}%`,
-                    right: `${100 - ((offsets()[i() + 1] ?? total() + 1) / (total() + 1)) * 100}%`,
+                    left: share(offsets()[i()] ?? 0),
+                    width: `calc(${share((offsets()[i() + 1] ?? height()) - (offsets()[i()] ?? 0))})`,
                   }}
                   onClick={() => jump(i())}
                 >
@@ -351,7 +358,7 @@ function Player(props: { onFail: () => void }) {
                 </button>
               )}
             </For>
-            <span class="dm-playhead" style={{ left: `${(scroll() / total()) * 100}%` }} />
+            <span class="dm-playhead" style={{ left: share(scroll() + (view() * scroll()) / total()) }} />
           </div>
         </div>
         <Show when={!started()}>

@@ -153,7 +153,7 @@ void main() {
   vec3 col = toRgb(ycc);
 
   if (uCrush > 0.01) {
-    float levels = mix(40.0, 3.0, uCrush);
+    float levels = mix(64.0, 3.0, pow(uCrush, 1.6));
     col = floor(col * levels + bayer(ivec2(css * 0.5))) / levels;
   }
 
@@ -166,12 +166,12 @@ void main() {
   col = mix(col, ACID, uKey * grid * 0.9);
   col = mix(col, col * 0.5 + ACID * 0.5, uKey * 0.18);
 
-  if (uActivity > 0.01 && motion > 0.35) {
+  if (uActivity > 0.01 && motion > 1.5) {
     vec2 a = (vec2(mb) + 0.5) * MB;
     vec2 tip = a + f.xy / motion * min(motion * 1.4, MB * 0.46);
     float line = 1.0 - smoothstep(0.4, 1.1, segment(css, a, tip));
-    col = mix(col, PINK, line * uActivity);
-    col = mix(col, ACID, (1.0 - smoothstep(0.8, 1.8, length(css - tip))) * uActivity);
+    col = mix(col, PINK, line * uActivity * 0.75);
+    col = mix(col, ACID, (1.0 - smoothstep(0.6, 1.5, length(css - tip))) * uActivity * 0.75);
   }
 
   outColor = vec4(clamp(col, 0.0, 1.0), 1.0);
@@ -190,7 +190,9 @@ export function createCodec(opts: {
   onStats: (stats: CodecStats) => void
 }) {
   const { content, output, pulse, onStats } = opts
-  const source = opts.source as PaintableCanvas
+  const source = opts.source as PaintableCanvas & {
+    updateElementGeometry: (element: Element, options: { canvasTransform: DOMMatrix }) => void
+  }
   const sourceCtx = source.getContext("2d") as ElementImageContext | null
   const gl = output.getContext("webgl2", { alpha: false, antialias: false, depth: false, stencil: false })
   if (!gl || !sourceCtx) return null
@@ -322,7 +324,8 @@ export function createCodec(opts: {
 
   source.onpaint = () => {
     sourceCtx.reset()
-    sourceCtx.drawElementImage(content, 0, 0)
+    const transform = sourceCtx.drawElementImage(content, 0, 0)
+    source.updateElementGeometry(content, { canvasTransform: transform })
     gl.bindTexture(gl.TEXTURE_2D, fresh)
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source)
@@ -357,7 +360,7 @@ export function createCodec(opts: {
     if (decoded) {
       idleFor = energy > 0.5 ? 0 : idleFor + dt
       const anyStale = stale.includes(1)
-      if (anyStale && idleFor > 0.3) keyPending = true
+      if (anyStale && idleFor > 0.45) keyPending = true
       const gopHit = audio.bar >= 0 ? audio.bar !== lastBar && lastBar >= 0 : sinceKey > 90
       if (anyStale && energy > 0.5 && gopHit) keyPending = true
     }
@@ -377,7 +380,6 @@ export function createCodec(opts: {
     let staleCount = 0
     let motionSum = 0
     for (let r = 0; r < rows; r++) {
-      const bandSeed = Math.floor(r / (1 + Math.floor(hash(r, 0, seed) * 3)))
       for (let c = 0; c < cols; c++) {
         const i = r * cols + c
         let vx = velocity[i * 2] * damp
@@ -394,10 +396,12 @@ export function createCodec(opts: {
           refresh = done ? (warm - dt * 0.4 < warmAt[i] ? 2 : 1) : 0
         } else {
           if (dy !== 0) {
-            const run = Math.floor(c / (2 + Math.floor(hash(bandSeed, 1, seed) * 6)))
-            const gain = 0.35 + 1.5 * hash(run, bandSeed, seed)
-            vy -= dy * gain * 0.6
-            vx += dy * (hash(run, bandSeed, seed + 7) - 0.5) * 0.9
+            const band = Math.floor(r / 3)
+            const run = Math.floor(c / (3 + Math.floor(hash(band, 1, seed) * 10)))
+            const h = hash(run, band, seed)
+            const gain = h < 0.1 ? 0 : h > 0.86 ? 2.4 : 0.75 + h * 0.5
+            vx += (-dy * (hash(run, band, seed + 7) - 0.5) * 0.5 - vx) * 0.5
+            vy += (-dy * gain - vy) * 0.5
           }
           if (pvx !== 0 || pvy !== 0) {
             const d = Math.hypot((c + 0.5) * MB - pointer.x, (r + 0.5) * MB - pointer.y)
@@ -414,7 +418,7 @@ export function createCodec(opts: {
           }
           if (m < 0.05) vx = vy = 0
           if (m > 0.6) stale[i] = 1
-          if (stale[i]) refresh = Math.random() < 0.01 ? 2 : 0.03
+          if (stale[i]) refresh = Math.random() < 0.02 ? 2 : 0.06
         }
 
         const m = Math.hypot(vx, vy)
@@ -423,7 +427,7 @@ export function createCodec(opts: {
         field[i * 4] = vx
         field[i * 4 + 1] = vy
         field[i * 4 + 2] = refresh
-        field[i * 4 + 3] = keying ? 0 : Math.min(1, m / 16 + stale[i] * 0.22)
+        field[i * 4 + 3] = keying ? 0 : Math.min(1, m / 36 + stale[i] * 0.12)
         staleCount += stale[i]
         motionSum += m
       }
