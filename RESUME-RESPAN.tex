@@ -37,9 +37,9 @@ Software engineer with about 2.5 years of shipping production systems: payment f
 \dated{\textbf{\href{https://github.com/erxes/erxes}{\textcolor{linkblue}{erxes}} · Backend Engineer, full stack · Remote}}{\textbf{Jun 2026 – Present}}
 Open-source CRM and customer-experience platform. 117 merged PRs across 6 repositories in 4 months.
 \begin{itemize}
-  \item Built most of the erxes AI agent plugin with one other engineer on TypeScript, Mastra, AI SDK, React, and MongoDB: native Mastra runtime, persistent memory, agent skills, streaming chat, PPTX, PDF, and chart artifacts, and Mongolian voice with barge-in.
+  \item Built most of the erxes AI agent plugin with one other engineer on TypeScript, Mastra, AI SDK, React, and MongoDB: persistent memory, skills the agent writes from a chat, streaming chat, PPTX, PDF, and chart artifacts, and Mongolian voice with barge-in.
   \item Cut production tool-call failures. 45 of 45 deal-creation calls failed on an ID check and about 19\% of all tool calls failed on bad arguments. Fixed both with a name-to-ID resolver and real GraphQL schema facts in tool definitions.
-  \item Hardened the agent against SSRF, DNS rebinding, zip bombs, and Mermaid and SVG XSS. Added human approval for destructive actions, server-driven cancellation, and tenant-isolated caches.
+  \item Fixed chat streaming that fell minutes behind the model. An 800-word reply took 253 s to render. Memoized rows, one store write per frame, and per-block markdown cut it to 32 s.
   \item Integrated Executor, an MCP and API integration layer, and Cloudflare OS into erxes as an embedded product with per-tenant provisioning and passwordless SSO.
   \item Added the missing pieces for plugins to live in their own repositories outside the erxes monorepo: dev-time loading, self-served UI remotes, and a shared theme. Now on the plugin marketplace and hackathon organizing teams.
   \item Pitched a code quality initiative and lead it with the CTO. Moved a full plugin to schema-first GraphQL codegen in a 12-PR stack across 280 files, added build-time contract checks, and help other plugin teams migrate.

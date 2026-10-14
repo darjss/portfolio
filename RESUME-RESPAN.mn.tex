@@ -38,9 +38,9 @@ Production систем бүтээж, нэвтрүүлсэн 2.5 жилийн т
 \dated{\textbf{\href{https://github.com/erxes/erxes}{\textcolor{linkblue}{erxes}} · Backend инженер, full stack · Remote}}{\textbf{2026.06 – одоог хүртэл}}
 Нээлттэй эхийн CRM, хэрэглэгчийн туршлагыг удирдах платформ. 4 сард 6 repository-д 117 PR merge хийсэн.
 \begin{itemize}
-  \item TypeScript, Mastra, AI SDK, React, MongoDB ашиглан erxes-ийн AI агент plugin-ийн ихэнхийг нэг инженертэй хамт бүтээсэн: Mastra runtime, persistent memory, агентын skill, streaming чат, PPTX, PDF, график artifact, монгол ярианы горим.
+  \item TypeScript, Mastra, AI SDK, React, MongoDB ашиглан erxes-ийн AI агент plugin-ийн ихэнхийг нэг инженертэй хамт бүтээсэн: persistent memory, чатаас агент өөрөө бичдэг skill, streaming чат, PPTX, PDF, график artifact, монгол ярианы горим.
   \item Production орчны tool call алдааг бууруулсан. Deal үүсгэх 45 дуудлага бүгд ID шалгалтад унаж, нийт tool call-ийн 19 орчим хувь буруу аргументаас болж алдаж байсан. Нэрээр ID олдог resolver нэмж, GraphQL schema-ийн бодит мэдээллийг tool-ийн тодорхойлолтод оруулж, хоёр алдааг зассан.
-  \item Агентыг SSRF, DNS rebinding, zip bomb, Mermaid болон SVG XSS халдлагаас хамгаалсан. Устгах үйлдэлд хүнээс зөвшөөрөл авах, серверээс цуцлах боломж, tenant бүрд тусгаарласан cache нэмсэн.
+  \item Загварын хариултаас хэдэн минутаар хоцордог streaming чатыг зассан. 800 үгтэй хариулт 253 секунд рендерлэгддэг байсан. Мөрүүдийг memoize хийж, store-д frame бүрт нэг удаа бичиж, markdown-ийг блокоор рендерлээд 32 секунд болгосон.
   \item MCP, API холбодог Executor болон Cloudflare OS-ийг erxes-д нэгтгэн суулгасан: tenant бүрийн provisioning, нууц үггүй SSO.
   \item Plugin-уудыг erxes monorepo-оос тусдаа repository-д ажиллуулахад дутуу байсан боломжуудыг нэмсэн: dev орчинд ачаалах, UI remote-оо өөрөө serve хийх, нэгдсэн theme. Одоо plugin marketplace, hackathon зохион байгуулах багуудад ажиллаж байна.
   \item Кодын чанарын ажлыг санаачилж, CTO-тай хамт удирдаж байна. Нэг plugin-ийг бүхэлд нь 280 файл хамарсан 12 PR-аар schema-first GraphQL codegen-д шилжүүлсэн. Build үед contract шалгадаг болгож, бусад plugin багийн шилжилтэд тусалж байна.
