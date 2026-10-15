@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Libre+Caslon+Text:ital@1&family=JetBrains+Mono:wght@400;500&display=swap");
 
 .home {
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
@@ -116,7 +116,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .home-doors:has(.door:hover) .door:not(:hover) {
+  .home-doors:has(.door:hover) .door:not(:hover, .door-read) {
     flex-grow: 0.7;
   }
 }
@@ -149,10 +149,11 @@
 }
 
 .door-movie .door-title {
-  font-family: "Bodoni Moda", Georgia, serif;
+  font-family: "Libre Caslon Text", Georgia, serif;
   font-style: italic;
-  font-weight: 500;
-  font-size: clamp(48px, 7vw, 112px);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 96px);
+  letter-spacing: -0.02em;
   color: oklch(0.93 0.04 80);
 }
 
@@ -206,6 +207,29 @@
   }
 }
 
+.door-read {
+  flex: 0.45 1 0;
+  background: #fbfaf7;
+  color: #1c1b19;
+}
+
+.door-read .door-kicker,
+.door-read .door-sub {
+  color: #6b675f;
+}
+
+.door-read .door-title {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.door-read:focus-visible {
+  outline-color: #1c1b19;
+}
+
 .home-sound {
   display: inline-flex;
   align-items: center;
@@ -240,8 +264,22 @@
 }
 
 @media (max-width: 760px) {
+  .home {
+    overflow-y: auto;
+  }
+
   .home-doors {
+    flex: none;
     flex-direction: column;
+  }
+
+  .door {
+    flex: none;
+    min-height: 260px;
+  }
+
+  .door-read {
+    min-height: 0;
   }
 
   .home-role {

@@ -9,6 +9,7 @@ render(
     <Router>
       <Route path="/" component={Index} />
       <Route path="/movie" component={lazy(() => import("./directions/projection/Projection"))} />
+      <Route path="/read" component={lazy(() => import("./lab/Read"))} />
       <Route path="/concert" component={lazy(() => import("./directions/datamosh/Datamosh"))} />
     </Router>
   ),

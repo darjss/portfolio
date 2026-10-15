@@ -56,6 +56,11 @@ export default function Index() {
           <span class="door-title">watch a concert</span>
           <span class="door-sub">the cv as a corrupted video file that moves with the music</span>
         </A>
+        <A href="/read" class="door door-read">
+          <span class="door-kicker">no canvas · no sound</span>
+          <span class="door-title">just read it</span>
+          <span class="door-sub">the same cv as a plain page</span>
+        </A>
       </div>
 
       <footer class="home-bottom">
