@@ -60,6 +60,6 @@ export interface Education {
 }
 
 export const education: Education[] = [
-  { school: "National University of Mongolia", program: "B.Sc. Information Systems", period: "Sep 2022 – Jan 2027" },
+  { school: "National University of Mongolia", program: "B.Sc. Information Systems", period: "Sep 2022 – Dec 2026" },
   { school: "Pinecone Academy", program: "Software engineering bootcamp", period: "Oct 2023 – May 2024" },
 ]

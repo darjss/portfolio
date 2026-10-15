@@ -56,5 +56,5 @@ SocialPay is Golomt's payments and wallet app. Part-time during semesters, full-
 
 ## Education
 
-**National University of Mongolia** · B.Sc. Information Systems · 2022 – 2027, diploma Jan 2027
+**National University of Mongolia** · B.Sc. Information Systems · 2022 – 2026
 **Pinecone Academy** · Software engineering bootcamp · 2023 – 2024
