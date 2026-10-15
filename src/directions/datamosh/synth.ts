@@ -241,14 +241,14 @@ export function createSynth() {
 
   return {
     sample() {
-      if (ctx.state !== "running") return { pump: 0, snare: 0, level: 0, bar: -1 }
+      if (ctx.state !== "running") return { kick: 10, snare: 0, level: 0, bar: -1 }
       const now = ctx.currentTime
       analyser.getFloatTimeDomainData(wave)
       let sum = 0
       for (const v of wave) sum += v * v
       level += (Math.min(Math.sqrt(sum / wave.length) * 3, 1) - level) * 0.2
       return {
-        pump: Math.exp(-latest(kicks, now) / 0.09),
+        kick: latest(kicks, now),
         snare: Math.exp(-latest(snares, now) / 0.07),
         level,
         bar: Math.floor((now - start) / (STEP * 16)),

@@ -77,7 +77,7 @@ export function createMusic(tracks: Track[], onTrack: (index: number) => void) {
       return audio.paused ? audio.play() : audio.pause()
     },
     sample(): Pulse {
-      if (audio.paused) return { pump: 0, snare: 0, level: 0, bar: -1 }
+      if (audio.paused) return { kick: 10, snare: 0, level: 0, bar: -1 }
       analyser.getByteFrequencyData(bins)
       const now = ctx.currentTime
       const k = 1 - Math.exp(-Math.max(now - lastSample, 0) / 0.3)
@@ -93,7 +93,7 @@ export function createMusic(tracks: Track[], onTrack: (index: number) => void) {
       highAvg += (high - highAvg) * k
       level += (Math.min(band(40, 12000) * 1.8, 1) - level) * Math.min(k * 3, 1)
       return {
-        pump: Math.exp(-(now - lastKick) / 0.09),
+        kick: now - lastKick,
         snare: Math.exp(-(now - lastSnare) / 0.07),
         level,
         bar: Math.floor(kicks / 4),

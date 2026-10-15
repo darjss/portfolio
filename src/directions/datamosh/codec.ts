@@ -2,7 +2,9 @@ import type { ElementImageContext, PaintableCanvas } from "../../lab/html-in-can
 
 export const MB = 16
 
-export type Pulse = { pump: number; snare: number; level: number; bar: number }
+export type Pulse = { kick: number; snare: number; level: number; bar: number }
+
+const RINGS = 3
 
 export type CodecStats = {
   type: "I" | "P"
@@ -87,6 +89,7 @@ uniform float uSnare;
 uniform float uCrush;
 uniform float uActivity;
 uniform float uSeed;
+uniform vec4 uRings[${RINGS}];
 const vec3 ACID = vec3(0.722, 1.0, 0.173);
 const vec3 PINK = vec3(1.0, 0.18, 0.604);
 const vec3 BLUE = vec3(0.176, 0.357, 1.0);
@@ -94,6 +97,25 @@ const vec3 BLUE = vec3(0.176, 0.357, 1.0);
 float bayer(ivec2 p) {
   int b[16] = int[16](0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5);
   return (float(b[(p.y % 4) * 4 + (p.x % 4)]) + 0.5) / 16.0;
+}
+
+vec2 shockwave(vec2 css) {
+  const float SPEED = 1300.0;
+  const float LEN = 70.0;
+  const float WIDTH = 120.0;
+  float k = 2.0 * PI / LEN;
+  vec2 grad = vec2(0.0);
+  for (int i = 0; i < ${RINGS}; i++) {
+    vec4 rp = uRings[i];
+    vec2 dv = css - rp.xy;
+    float r = length(dv);
+    float s = r - SPEED * rp.z;
+    float env = exp(-s * s / (WIDTH * WIDTH)) * exp(-2.6 * rp.z) * rp.w * smoothstep(0.0, 0.05, rp.z);
+    if (env < 0.002) continue;
+    float dh = (k * cos(s * k) - 2.0 * s / (WIDTH * WIDTH) * sin(s * k)) * env;
+    grad += dv / max(r, 1.0) * dh * LEN * 0.16;
+  }
+  return grad;
 }
 
 float segment(vec2 p, vec2 a, vec2 b) {
@@ -110,11 +132,13 @@ void main() {
   float q = f.w;
   float motion = length(f.xy);
 
+  vec2 wave = shockwave(css);
+  vec2 bend = vec2(wave.x, -wave.y) * 16.0 * uDpr;
   float split = uSnare * (3.0 + 9.0 * hash12(vec2(float(mb.y), uSeed))) * uDpr;
   vec3 c = vec3(
-    texture(uFrame, (frag + vec2(split, 0.0)) / uRes).r,
-    texture(uFrame, frag / uRes).g,
-    texture(uFrame, (frag - vec2(split, 0.0)) / uRes).b
+    texture(uFrame, (frag + bend * 1.25 + vec2(split, 0.0)) / uRes).r,
+    texture(uFrame, (frag + bend) / uRes).g,
+    texture(uFrame, (frag + bend * 0.75 - vec2(split, 0.0)) / uRes).b
   );
   vec3 ycc = toYcc(c);
 
@@ -158,6 +182,9 @@ void main() {
   }
 
   col *= 1.0 - uPump * 0.34;
+  float lit = dot(wave, vec2(-0.55, -0.8));
+  col += ACID * pow(clamp(lit * 2.2, 0.0, 1.0), 2.0) * 0.45;
+  col *= 1.0 - pow(clamp(-lit * 1.6, 0.0, 1.0), 2.0) * 0.12;
 
   if (f.z > 1.5) col = mix(col, ACID, 0.28 * uActivity);
 
@@ -276,6 +303,9 @@ export function createCodec(opts: {
   let lastBar = -1
   let lastScroll = content.scrollTop
   const pointer = { x: -1e4, y: -1e4, px: -1e4, py: -1e4 }
+  const rings = new Float32Array(RINGS * 4)
+  let ring = 0
+  let lastKickAt = -1
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
 
@@ -442,7 +472,7 @@ export function createCodec(opts: {
     return { keying, stale: staleCount / (cols * rows), motion: motionSum / (cols * rows) }
   }
 
-  const draw = (p: { program: WebGLProgram; uniforms: Map<string, WebGLUniformLocation> }, values: Record<string, number | [number, number]>, textures: Record<string, WebGLTexture>) => {
+  const draw = (p: { program: WebGLProgram; uniforms: Map<string, WebGLUniformLocation> }, values: Record<string, number | [number, number] | Float32Array>, textures: Record<string, WebGLTexture>) => {
     gl.useProgram(p.program)
     let unit = 0
     for (const [name, tex] of Object.entries(textures)) {
@@ -452,7 +482,8 @@ export function createCodec(opts: {
     }
     for (const [name, v] of Object.entries(values)) {
       const loc = p.uniforms.get(name) ?? null
-      if (Array.isArray(v)) gl.uniform2f(loc, v[0], v[1])
+      if (v instanceof Float32Array) gl.uniform4fv(loc, v)
+      else if (Array.isArray(v)) gl.uniform2f(loc, v[0], v[1])
       else if (name === "uN") gl.uniform1i(loc, v)
       else gl.uniform1f(loc, v)
     }
@@ -469,7 +500,14 @@ export function createCodec(opts: {
     if (!frames || !hasFresh) return
     if (warmStart < 0) warmStart = now
 
-    const audio = reduced.matches ? { pump: 0, snare: 0, level: pulse().level, bar: -1 } : pulse()
+    const audio = reduced.matches ? { kick: 10, snare: 0, level: pulse().level, bar: -1 } : pulse()
+    const kickAt = now / 1000 - audio.kick
+    if (audio.kick < 0.1 && kickAt - lastKickAt > 0.15) {
+      lastKickAt = kickAt
+      rings.set([output.clientWidth / 2, output.clientHeight / 2, kickAt, 0.6 + audio.level * 0.6], ring * 4)
+      ring = (ring + 1) % RINGS
+    }
+    const ages = rings.map((v, i) => (i % 4 === 2 ? now / 1000 - v : v))
     const stats = updateField(dt, audio, now)
     key *= Math.exp(-dt / 0.14)
     if (stats.keying) key = 1
@@ -500,7 +538,8 @@ export function createCodec(opts: {
         uN: n,
         uDct: useDct ? 1 : 0,
         uKey: key,
-        uPump: audio.pump,
+        uPump: Math.exp(-audio.kick / 0.09),
+        "uRings[0]": ages,
         uSnare: audio.snare,
         uCrush: Math.min(1, audio.level * 0.55 + activity * 0.35),
         uActivity: decoded ? activity : 0.8,

@@ -299,7 +299,7 @@ function Player(props: { onFail: () => void }) {
       source,
       content: scroller,
       output,
-      pulse: () => music?.sample() ?? synth?.sample() ?? { pump: 0, snare: 0, level: 0, bar: -1 },
+      pulse: () => music?.sample() ?? synth?.sample() ?? { kick: 10, snare: 0, level: 0, bar: -1 },
       onStats: (s) =>
         setStats((prev) =>
           prev.type === s.type && prev.gop === s.gop && Math.abs(prev.stale - s.stale) < 0.01 && prev.decoded === s.decoded ? prev : s,
