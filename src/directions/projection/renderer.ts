@@ -1,4 +1,4 @@
-import { filmFrag, moteFrag, moteVert, quadVert, roomFrag } from "./shaders"
+import { filmFrag, moteFrag, moteVert, quadVert, roomFrag, windFrag } from "./shaders"
 
 type Rect = { x: number; y: number; w: number; h: number }
 
@@ -26,6 +26,8 @@ export type FilmFrame = {
 }
 
 const MOTES = 1400
+const WIND_SCALE = 8
+const WIND_RADIUS = 110
 
 export function createRenderer(output: HTMLCanvasElement, source: HTMLCanvasElement) {
   const gl = output.getContext("webgl2", { alpha: false, antialias: false, depth: false, stencil: false })
@@ -57,6 +59,7 @@ export function createRenderer(output: HTMLCanvasElement, source: HTMLCanvasElem
   const film = program(quadVert, filmFrag)
   const room = program(quadVert, roomFrag)
   const motes = program(moteVert, moteFrag)
+  const wind = program(quadVert, windFrag)
 
   const quad = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, quad)
@@ -80,8 +83,26 @@ export function createRenderer(output: HTMLCanvasElement, source: HTMLCanvasElem
 
   const srcTex = texture()
   const targets = [0, 1].map(() => ({ tex: texture(), fbo: gl.createFramebuffer()! }))
+  const winds = [0, 1].map(() => {
+    const tex = texture()
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
+    return { tex, fbo: gl.createFramebuffer()! }
+  })
   let current = 0
+  let currentWind = 0
   let size = { w: 0, h: 0 }
+  let windSize = { w: 1, h: 1 }
+  let lastTime = 0
+  const pointer = { x: -1, y: -1, px: -1, py: -1 }
+  const onMove = (e: PointerEvent) => {
+    if (pointer.x < 0) {
+      pointer.px = e.clientX
+      pointer.py = e.clientY
+    }
+    pointer.x = e.clientX
+    pointer.y = e.clientY
+  }
+  window.addEventListener("pointermove", onMove, { passive: true })
 
   const resize = (w: number, h: number) => {
     if (size.w === w && size.h === h) return
@@ -95,6 +116,14 @@ export function createRenderer(output: HTMLCanvasElement, source: HTMLCanvasElem
       gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo)
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, target.tex, 0)
       gl.clearColor(0, 0, 0, 1)
+      gl.clear(gl.COLOR_BUFFER_BIT)
+    }
+    windSize = { w: Math.ceil(w / WIND_SCALE), h: Math.ceil(h / WIND_SCALE) }
+    for (const target of winds) {
+      gl.bindTexture(gl.TEXTURE_2D, target.tex)
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, windSize.w, windSize.h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null)
+      gl.bindFramebuffer(gl.FRAMEBUFFER, target.fbo)
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, target.tex, 0)
       gl.clear(gl.COLOR_BUFFER_BIT)
     }
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
@@ -145,10 +174,34 @@ export function createRenderer(output: HTMLCanvasElement, source: HTMLCanvasElem
       current = 1 - current
     }
 
+    const dt = Math.min(Math.max(f.time - lastTime, 0), 0.1)
+    lastTime = f.time
+    const moved = Math.hypot(pointer.x - pointer.px, pointer.y - pointer.py) / f.vh
+    const prevWind = winds[currentWind]
+    currentWind = 1 - currentWind
+    gl.useProgram(wind.p)
+    gl.bindFramebuffer(gl.FRAMEBUFFER, winds[currentWind].fbo)
+    gl.viewport(0, 0, windSize.w, windSize.h)
+    gl.activeTexture(gl.TEXTURE0)
+    gl.bindTexture(gl.TEXTURE_2D, prevWind.tex)
+    gl.uniform1i(wind.u("uPrev"), 0)
+    gl.uniform2f(wind.u("uRes"), windSize.w, windSize.h)
+    gl.uniform1f(wind.u("uDecay"), Math.pow(0.5, dt / 1.1))
+    gl.uniform2f(wind.u("uA"), pointer.px / f.vw, 1 - pointer.py / f.vh)
+    gl.uniform2f(wind.u("uB"), pointer.x / f.vw, 1 - pointer.y / f.vh)
+    gl.uniform1f(wind.u("uRadius"), WIND_RADIUS / f.vh)
+    gl.uniform1f(wind.u("uStrength"), moved > 0 ? Math.min(0.2 + moved * 12, 1) * 0.5 : 0)
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+    pointer.px = pointer.x
+    pointer.py = pointer.y
+
     const filmTex = targets[current].tex
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
     gl.viewport(0, 0, size.w, size.h)
     gl.useProgram(room.p)
+    gl.activeTexture(gl.TEXTURE1)
+    gl.bindTexture(gl.TEXTURE_2D, winds[currentWind].tex)
+    gl.uniform1i(room.u("uWind"), 1)
     gl.activeTexture(gl.TEXTURE0)
     gl.bindTexture(gl.TEXTURE_2D, filmTex)
     gl.uniform1i(room.u("uFilm"), 0)
@@ -164,6 +217,7 @@ export function createRenderer(output: HTMLCanvasElement, source: HTMLCanvasElem
     gl.bindVertexArray(emptyVao)
     gl.useProgram(motes.p)
     gl.uniform1i(motes.u("uFilm"), 0)
+    gl.uniform1i(motes.u("uWind"), 1)
     gl.uniform2f(motes.u("uView"), f.vw, f.vh)
     gl.uniform1f(motes.u("uDpr"), f.dpr)
     gl.uniform4f(motes.u("uAp"), f.ap.x, f.ap.y, f.ap.w, f.ap.h)
@@ -176,6 +230,7 @@ export function createRenderer(output: HTMLCanvasElement, source: HTMLCanvasElem
   }
 
   const destroy = () => {
+    window.removeEventListener("pointermove", onMove)
     gl.getExtension("WEBGL_lose_context")?.loseContext()
   }
 

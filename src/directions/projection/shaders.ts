@@ -178,6 +178,7 @@ uniform vec4 uEnv;
 uniform float uTime;
 uniform float uLamp;
 uniform float uBeam;
+uniform sampler2D uWind;
 out vec4 o;
 
 vec2 fuv(vec2 css) { return vec2(css.x / uView.x, 1.0 - css.y / uView.y); }
@@ -284,6 +285,10 @@ void main() {
   vec3 P = vec3(uView.x * 0.5, -uView.y * 0.55, f * 1.8);
   float sEnd = sHit;
   vec3 beam = vec3(0.0);
+  vec2 wuv = fuv(p);
+  vec2 we = 6.0 / uView;
+  float wind = texture(uWind, wuv).r;
+  vec2 wpush = vec2(texture(uWind, wuv + vec2(we.x, 0.0)).r - texture(uWind, wuv - vec2(we.x, 0.0)).r, texture(uWind, wuv - vec2(0.0, we.y)).r - texture(uWind, wuv + vec2(0.0, we.y)).r) * 420.0;
   const int N = 44;
   float jitter = hash2(p + fract(uTime) * 61.0);
   for (int i = 0; i < N; i++) {
@@ -294,8 +299,8 @@ void main() {
     float w = inAp(Q, 10.0);
     if (w <= 0.0) continue;
     vec3 L = film(Q, 2.6);
-    float smoke = fbm3(Y * 0.0032 + vec3(uTime * 0.02, -uTime * 0.035, uTime * 0.015));
-    smoke = smoothstep(0.25, 0.85, smoke) * 0.85 + 0.15;
+    float smoke = fbm3((Y + vec3(wpush, 0.0)) * 0.0032 + vec3(uTime * 0.02, -uTime * 0.035, uTime * 0.015));
+    smoke = (smoothstep(0.25, 0.85, smoke) * 0.85 + 0.15) * (1.0 - 0.9 * wind) + smoothstep(8.0, 60.0, length(wpush)) * 0.5;
     float fall = min(k * k, 9.0);
     beam += L * w * smoke * fall;
   }
@@ -316,6 +321,26 @@ void main() {
   o = vec4(pow(max(col, 0.0), vec3(1.0)), 1.0);
 }`
 
+export const windFrag = `${common}
+uniform sampler2D uPrev;
+uniform vec2 uRes;
+uniform float uDecay;
+uniform vec2 uA;
+uniform vec2 uB;
+uniform float uRadius;
+uniform float uStrength;
+out vec4 o;
+void main() {
+  vec2 uv = gl_FragCoord.xy / uRes;
+  float prev = texture(uPrev, uv).r * uDecay;
+  vec2 asp = vec2(uRes.x / uRes.y, 1.0);
+  vec2 pa = (uv - uA) * asp;
+  vec2 ba = (uB - uA) * asp;
+  float h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-6), 0.0, 1.0);
+  float d = length(pa - ba * h) / uRadius;
+  o = vec4(clamp(prev + exp(-d * d * 3.0) * uStrength, 0.0, 1.0), 0.0, 0.0, 1.0);
+}`
+
 export const moteVert = `${common}
 uniform sampler2D uFilm;
 uniform vec2 uView;
@@ -323,6 +348,7 @@ uniform float uDpr;
 uniform vec4 uAp;
 uniform float uTime;
 uniform float uLamp;
+uniform sampler2D uWind;
 out vec3 vCol;
 void main() {
   float id = float(gl_VertexID);
@@ -335,13 +361,18 @@ void main() {
   X += vec3(sin(t * 0.7 + id) * 40.0, sin(t * 0.31 + id * 2.0) * 60.0 - mod(uTime * (6.0 + 10.0 * r.y), uView.y * 1.6) + uView.y * 0.8, cos(t * 0.5 + id) * 30.0);
   float depth = f - X.z;
   vec2 p = C.xy + (X.xy - C.xy) * f / depth;
+  vec2 wuv = vec2(p.x / uView.x, 1.0 - p.y / uView.y);
+  vec2 we = 8.0 / uView;
+  vec2 wgrad = vec2(texture(uWind, wuv + vec2(we.x, 0.0)).r - texture(uWind, wuv - vec2(we.x, 0.0)).r, texture(uWind, wuv - vec2(0.0, we.y)).r - texture(uWind, wuv + vec2(0.0, we.y)).r);
+  float stir = texture(uWind, wuv).r;
+  p -= wgrad * 900.0 * f / depth;
   float k = P.z / (P.z - X.z);
   vec2 Q = P.xy + (X.xy - P.xy) * k;
   vec2 a = step(uAp.xy, Q) * step(Q, uAp.xy + uAp.zw);
   float inBeam = a.x * a.y;
   vec3 L = textureLod(uFilm, vec2(Q.x / uView.x, 1.0 - Q.y / uView.y), 3.0).rgb;
   float tw = 0.4 + 0.6 * pow(hash1(id + floor(uTime * (2.0 + r.z * 6.0))), 2.0);
-  vCol = L * inBeam * tw * min(k * k, 6.0) * 0.55 * uLamp;
+  vCol = L * inBeam * tw * min(k * k, 6.0) * 0.55 * uLamp * (1.0 + stir * 3.0);
   vec2 ndc = vec2(p.x / uView.x * 2.0 - 1.0, 1.0 - p.y / uView.y * 2.0);
   gl_Position = vec4(ndc, 0.0, 1.0);
   gl_PointSize = clamp((0.8 + 1.8 * hash1(id * 7.7)) * f / depth, 1.0, 9.0) * uDpr;
